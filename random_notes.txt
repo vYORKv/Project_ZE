@@ -1,0 +1,7 @@
+Hierarchy of Stimulus: Sight -> Sound -> Mod Mentality
+
+
+Current bat swing implementation just turns on a zone and turns it off. Need
+to see if there's a reliable way to place a hitbox on the bat as it moves to 
+follow its swing. Might not work because the bat is just a sprite2d node. Would
+likely work with a 2d node with the bat sprite under it.

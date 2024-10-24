@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwy23n7ls04bp"]
+
+[ext_resource type="Script" path="res://scripts/location_scripts/solo_run.gd" id="1_uyfxo"]
+
+[node name="SoloRun" type="Node2D"]
+script = ExtResource("1_uyfxo")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]

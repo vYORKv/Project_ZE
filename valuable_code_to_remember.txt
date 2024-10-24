@@ -1,0 +1,8 @@
+### to_global function and returning cast endpoint global_position ###
+	*** ray.to_global(ray.target_position) ***
+	The to_global function can convert children nodes' local position 
+	(relative to the parent node) to a global position. This will not work on
+	the parent node itself. Obviously, this is incredibly useful for finding
+	the endpoint of a raycast. Other valuable uses should follow.
+
+### [name of next important code tidbit] ###

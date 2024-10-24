@@ -1,0 +1,14 @@
+To-Do List
+
+1) Figure out proper input handling, and stop all inputs while player is dead.
+	- Likely place an "if" statement to catch every input that needs to be 
+	disabled while player is dead, excluding all inputs that are available 
+	outside of gameplay (hitting esc for menu, etc.)
+*2) Create longer zombie aggro audio files
+***3) Build out Solo Run level with full scripting and ai pathing
+4) Bleeding Animated Sprite
+5) Place corpse pngs inside of effect_sprite
+**6) Create blood variations (both human and z) and all player corpses
+7) Hitpoints bar
+**8) Add variations to zombie death cry
+***9) Fix tilesets for building interiors

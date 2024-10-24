@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://2fhrdgkxuvpj"]
+
+[ext_resource type="Script" path="res://scripts/item_scripts/shotgun.gd" id="1_ciabq"]
+[ext_resource type="Texture2D" uid="uid://v3d6nlu417hs" path="res://assets/graphics/weapons/shotgun.png" id="2_2o2mx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hctkb"]
+light_mode = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vogmg"]
+size = Vector2(33.946, 6.97649)
+
+[node name="Shotgun" type="Area2D"]
+z_index = 4
+scale = Vector2(1.5, 1.5)
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("1_ciabq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_hctkb")
+texture = ExtResource("2_2o2mx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.0210867, -0.00177455)
+shape = SubResource("RectangleShape2D_vogmg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

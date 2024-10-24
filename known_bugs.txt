@@ -1,0 +1,2 @@
+Shotgun can reload and infinite number of times before the sound is finished. 
+Reloads on every reload input spam press.

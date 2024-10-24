@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://l5ussyyufq1j"]
+
+[ext_resource type="Script" path="res://scripts/item_scripts/pills.gd" id="1_3td35"]
+[ext_resource type="Texture2D" uid="uid://bsods7mcx2jf7" path="res://assets/graphics/items/pills.png" id="1_fhth4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_26jtt"]
+light_mode = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvf2q"]
+size = Vector2(8, 10)
+
+[node name="Pills" type="Area2D"]
+scale = Vector2(1.25, 1.25)
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("1_3td35")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.695503, 0.695503, 0.695503, 1)
+material = SubResource("CanvasItemMaterial_26jtt")
+texture = ExtResource("1_fhth4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yvf2q")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

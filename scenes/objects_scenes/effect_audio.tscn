@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxnvoir5g0euw"]
+
+[ext_resource type="Script" path="res://scripts/objects_scripts/effect_audio.gd" id="1_k17b5"]
+
+[node name="EffectAudio" type="AudioStreamPlayer2D"]
+max_distance = 700.0
+attenuation = 3.0
+script = ExtResource("1_k17b5")

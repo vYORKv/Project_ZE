@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmvl6rsu44qh1"]
+
+[ext_resource type="Script" path="res://scripts/actor_scripts/zombie.gd" id="1_bgsnd"]
+[ext_resource type="Texture2D" uid="uid://bgtef0rnph2ny" path="res://assets/graphics/actors/zombies/zombie_pointer.png" id="2_jt6cu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m7je3"]
+light_mode = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tho0v"]
+radius = 14.2484
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x5k6r"]
+
+[node name="Zombie" type="CharacterBody2D" groups=["actors", "zombies"]]
+z_index = 5
+motion_mode = 1
+wall_min_slide_angle = 0.0174533
+script = ExtResource("1_bgsnd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_m7je3")
+rotation = 1.5708
+texture = ExtResource("2_jt6cu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.42258, -0.0626211)
+scale = Vector2(0.9, 0.9)
+shape = SubResource("CircleShape2D_tho0v")
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(-2.42258, -0.0626211)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_tho0v")
+
+[node name="OneShotSFX" type="AudioStreamPlayer2D" parent="."]
+max_distance = 300.0
+attenuation = 3.0
+
+[node name="LoopingSFX" type="AudioStreamPlayer2D" parent="."]
+max_distance = 300.0
+attenuation = 2.0
+
+[node name="VisionCone" type="Area2D" parent="."]
+rotation = 1.5708
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionCone"]
+polygon = PackedVector2Array(7.99995, -13, 288, -64.001, 191.999, -256.001, 127.999, -320, 63.9987, -352, -64.0013, -352, -128.001, -320, -192.001, -255.999, -288, -63.999, -8.00005, -13, -20, 7.23998e-05, -8.99994, 17, -2.99993, 18, 3.00007, 18, 11.0001, 16, 20, -7.23998e-05)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+simplify_path = true
+avoidance_enabled = true
+radius = 16.0
+debug_enabled = true
+
+[node name="LastTargetTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="PointMoveTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="BiteTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackRange"]
+rotation = 1.5708
+polygon = PackedVector2Array(7.99995, -13, 64, -32, 32, -96, -5.59506e-06, -128, -32, -96, -64, -32, -8.00005, -13, -20, 7.23998e-05, -8.99994, 17, -2.99993, 18, 3.00007, 18, 11.0001, 16, 20, -7.23998e-05)
+
+[node name="MobRadius" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MobRadius"]
+scale = Vector2(12, 12)
+shape = SubResource("CircleShape2D_x5k6r")
+
+[node name="BiteHitBox" type="Area2D" parent="."]
+rotation = 1.5708
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BiteHitBox"]
+position = Vector2(0, 0.5)
+polygon = PackedVector2Array(8, -10, 8, -13, 2, -18, -2, -18, -8, -13, -8, -10)
+
+[node name="AudioTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="VisionCone" to="." method="_on_vision_cone_body_entered"]
+[connection signal="body_exited" from="VisionCone" to="." method="_on_vision_cone_body_exited"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="LastTargetTimer" to="." method="_on_last_target_timer_timeout"]
+[connection signal="timeout" from="PointMoveTimer" to="." method="_on_point_move_timer_timeout"]
+[connection signal="timeout" from="BiteTimer" to="." method="_on_bite_timer_timeout"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="body_entered" from="MobRadius" to="." method="_on_mob_radius_body_entered"]
+[connection signal="body_exited" from="MobRadius" to="." method="_on_mob_radius_body_exited"]
+[connection signal="area_entered" from="BiteHitBox" to="." method="_on_bite_hit_box_area_entered"]

@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://7em1dyodqnny"]
+
+[ext_resource type="Texture2D" uid="uid://br5yerlydxklq" path="res://assets/graphics/effects/bullet_hit_environment.png" id="1_wx01t"]
+[ext_resource type="Script" path="res://scripts/objects_scripts/effect_animation.gd" id="2_kvhrr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xb3iv"]
+light_mode = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6fi8"]
+atlas = ExtResource("1_wx01t")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7f6v"]
+atlas = ExtResource("1_wx01t")
+region = Rect2(5, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55iqb"]
+atlas = ExtResource("1_wx01t")
+region = Rect2(10, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x70k"]
+atlas = ExtResource("1_wx01t")
+region = Rect2(15, 0, 5, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rg8el"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6fi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7f6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55iqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x70k")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"environment_hit",
+"speed": 14.0
+}]
+
+[node name="EffectAnimation" type="AnimatedSprite2D"]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_xb3iv")
+sprite_frames = SubResource("SpriteFrames_rg8el")
+animation = &"environment_hit"
+script = ExtResource("2_kvhrr")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+max_distance = 500.0
+attenuation = 3.0

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctvspgdp0heim"]
+
+[ext_resource type="Texture2D" uid="uid://d1jb1a0xspknr" path="res://assets/graphics/actors/player/player_yellow.png" id="1_gmrl2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m6a7t"]
+light_mode = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iqpfl"]
+radius = 14.0006
+
+[node name="Dummy" type="CharacterBody2D" groups=["player"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_m6a7t")
+texture = ExtResource("1_gmrl2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iqpfl")

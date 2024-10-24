@@ -1,0 +1,31 @@
+1 - Base layer Collision
+2 - 
+3 - Hurtboxes(Layer)/Hitboxes(Mask) ***Maybe Player Hurtboxes?***
+4 - ***Maybe Zombie Hurtboxes?***
+5 - Bullet Hit for Walls/Solid Environment
+6 - Items (Pickup)
+7 - 
+8 - 
+
+
+Layer - The layer the collision object exists on (the layer it can be detected).
+Mask - The layer the object is monitoring for other collision objects.
+
+Collision Mask Question
+So from what I understand, Collision Layer is where the node is, and 
+Collision Mask is where it looks for objects to collide with.
+
+So if the player is on Layer 1, and the Mask is 1 and 2, it will be able to 
+collide with all nodes that have a Layer 1 and/or Layer 2, no matter what that 
+node has in the Collision Mask. Is that correct? (YES)
+
+And consider this situation:
+
+A is on layer 1 and has a mask on 2
+
+B is on layer 2 and has no mask
+
+A will detect a collision with B if my understanding is correct. But will B 
+detect a collision with A? As in will the signal "_on_B_body_entered(body)" be 
+called when A enters into B? (NO, B is not monitoring any layers. Can't detect,
+but can "be detected on its layer").

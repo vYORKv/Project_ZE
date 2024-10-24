@@ -1,0 +1,153 @@
+[gd_scene load_steps=2 format=3 uid="uid://hwcvpk6y3fpw"]
+
+[ext_resource type="Script" path="res://scripts/meta_scripts/main_menu.gd" id="1_rl7w5"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_rl7w5")
+metadata/_edit_vertical_guides_ = [576.0]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.351563, 0.351563, 0.351563, 1)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 457.0
+offset_top = 25.0
+offset_right = 697.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 50
+text = "Project ZE"
+horizontal_alignment = 1
+
+[node name="SubTitle" type="Label" parent="."]
+offset_left = 424.0
+offset_top = 85.0
+offset_right = 729.0
+offset_bottom = 154.0
+theme_override_font_sizes/font_size = 30
+text = "Vertical Slice"
+horizontal_alignment = 1
+
+[node name="Version" type="Label" parent="."]
+offset_left = 1045.0
+offset_top = 617.0
+offset_right = 1165.0
+offset_bottom = 649.0
+theme_override_font_sizes/font_size = 20
+text = "v0.2.1"
+horizontal_alignment = 1
+
+[node name="MainButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainButtonContainer" type="VBoxContainer" parent="MainButtons"]
+layout_mode = 0
+offset_left = 483.0
+offset_top = 241.0
+offset_right = 671.0
+offset_bottom = 425.0
+
+[node name="SoloButton" type="Button" parent="MainButtons/MainButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Solo Run"
+
+[node name="MultiplayerButton" type="Button" parent="MainButtons/MainButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Multiplayer"
+
+[node name="OptionsButton" type="Button" parent="MainButtons/MainButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Controls"
+
+[node name="QuitButton" type="Button" parent="MainButtons/MainButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+
+[node name="TestArenaButton" type="Button" parent="MainButtons"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 609.0
+offset_right = 101.0
+offset_bottom = 640.0
+text = "Test Arena"
+
+[node name="OptionsMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="OptionsMenu"]
+
+[node name="OptionsControl" type="Control" parent="OptionsMenu/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OptionsButtons" type="VBoxContainer" parent="OptionsMenu/CanvasLayer/OptionsControl"]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 263.0
+offset_right = 608.0
+offset_bottom = 303.0
+
+[node name="Controls" type="Control" parent="OptionsMenu/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="OptionsMenu/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Controls" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 513.0
+offset_top = 258.0
+offset_right = 553.0
+offset_bottom = 298.0
+
+[node name="Label" type="Label" parent="Controls"]
+layout_mode = 0
+offset_left = -103.0
+offset_top = -50.0
+offset_right = 345.0
+offset_bottom = 213.0
+theme_override_font_sizes/font_size = 25
+text = "Left Click - Attack/Use Item
+Shift - Sneak
+Q - Drop Item
+1 - Melee Weapon
+2 - Firearm
+3 - Painkillers (Heal)
+4 - Medkit (Heal/Stop Bleeding)"
+
+[node name="ControlsBackButton" type="Button" parent="Controls"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 227.0
+offset_right = 102.0
+offset_bottom = 277.0
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[connection signal="pressed" from="MainButtons/MainButtonContainer/SoloButton" to="." method="_on_solo_button_pressed"]
+[connection signal="pressed" from="MainButtons/MainButtonContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="MainButtons/MainButtonContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainButtons/MainButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MainButtons/TestArenaButton" to="." method="_on_test_arena_button_pressed"]
+[connection signal="pressed" from="Controls/ControlsBackButton" to="." method="_on_controls_back_button_pressed"]

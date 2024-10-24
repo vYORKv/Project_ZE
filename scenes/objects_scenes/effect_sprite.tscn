@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://nkexx6wmms60"]
+
+[ext_resource type="Script" path="res://scripts/objects_scripts/effect_sprite.gd" id="1_j5ty2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3egyi"]
+light_mode = 2
+
+[node name="EffectSprite" type="Sprite2D"]
+light_mask = 2
+visibility_layer = 2
+z_index = 4
+material = SubResource("CanvasItemMaterial_3egyi")
+script = ExtResource("1_j5ty2")
