@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://m3lox0i5eehb"]
+
+[ext_resource type="Texture2D" uid="uid://b44sf5jieoe8e" path="res://assets/graphics/environment/police_car.png" id="1_lw13l"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gpslx"]
+polygon = PackedVector2Array(-10, 63, 10, 63, 10, 59, 12, 59, 14, 58, 16, 57, 21, 52, 22, 50, 23, 47, 24, 42, 24, 28, 23, 28, 23, 21, 26, 21, 29, 18, 29, 16, 26, 16, 26, 17, 24, 17, 24, -28, 25, -28, 25, -41, 24, -44, 23, -49, 22, -53, 19, -59, 17, -61, 15, -62, 12, -63, -12, -63, -15, -62, -17, -61, -19, -59, -20, -57, -22, -53, -23, -49, -24, -44, -25, -41, -25, -28, -24, -28, -24, 16, -29, 16, -29, 18, -26, 21, -23, 21, -23, 28, -24, 28, -24, 42, -23, 47, -22, 50, -21, 52, -16, 57, -14, 58, -12, 59, -10, 59)
+
+[node name="PoliceCar" type="StaticBody2D" groups=["environment"]]
+scale = Vector2(2, 2)
+collision_layer = 17
+collision_mask = 17
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lw13l")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-10, 63, 10, 63, 10, 59, 12, 59, 14, 58, 16, 57, 21, 52, 22, 50, 23, 47, 24, 42, 24, 21, 26, 21, 29, 18, 29, 16, 24, 16, 24, -28, 25, -28, 25, -41, 24, -44, 23, -49, 22, -53, 21, -55, 19, -59, 17, -61, 15, -62, 12, -63, -12, -63, -15, -62, -17, -61, -19, -59, -20, -57, -22, -53, -23, -49, -24, -44, -25, -41, -25, -28, -24, -28, -24, 16, -29, 16, -29, 18, -26, 21, -24, 21, -24, 42, -23, 47, -22, 50, -21, 52, -16, 57, -14, 58, -12, 59, -10, 59)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_gpslx")

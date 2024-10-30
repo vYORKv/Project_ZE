@@ -57,6 +57,8 @@ var last_timer_inactive := true
 var last_timer_finished := false
 var point_timer_inactive := true
 var point_timer_finished := false
+var meta_triggered := false
+var meta_target: Object
 
 enum {
 	IDLE,
@@ -64,7 +66,8 @@ enum {
 	PURSUE,
 	CHECK_LAST,
 	CHECK_SOUND,
-	MOB_MENTALITY
+	MOB_MENTALITY,
+	META
 }
 
 var aggro_sfx := [AGGRO_1, AGGRO_2, AGGRO_3, AGGRO_4, AGGRO_5, AGGRO_6, AGGRO_7, AGGRO_8, AGGRO_9]
@@ -190,7 +193,9 @@ func _physics_process(delta: float) -> void:
 	#print("Current Target: " + str(current_target))
 	#print("Last Target: " + str(last_target))
 	#print("Player in sight: " + str(player_in_sight))
-	if player_in_sight:
+	if meta_triggered:
+		state = META
+	elif player_in_sight:
 		state = PURSUE
 	elif last_target != null:
 		if !last_target.dead:
@@ -505,6 +510,36 @@ func _physics_process(delta: float) -> void:
 			#look_at(next_path_position)
 			TurnSpeed(next_path_position, delta)
 			move_and_slide()
+		META:
+			heard_noise = false
+			if !aggro:
+				LoopingSFX.stop()
+			hunting = false
+			moaning = false
+			aggro = true
+			#if meta_target:
+				#NavAgent.target_position = meta_target.global_position
+			#else: 
+				#aggro = false
+				#state = IDLE
+			if meta_target.dead:
+				meta_triggered = false
+				aggro = false
+				state = IDLE
+			NavAgent.target_position = meta_target.global_position
+			var current_agent_position := global_position
+			var next_path_position: Vector2 = NavAgent.get_next_path_position()
+			var new_velocity := current_agent_position.direction_to(next_path_position) * speed
+			if !attack_range.is_empty():
+				NavAgent.avoidance_enabled = false
+			else:
+				NavAgent.avoidance_enabled = true
+			if NavAgent.avoidance_enabled:
+				NavAgent.set_velocity(new_velocity)
+			else:
+				velocity = new_velocity
+			TurnSpeed(next_path_position, delta)
+			move_and_slide()
 	
 	######## BLOCK OUT #######
 	##print(state)
@@ -692,6 +727,7 @@ func Hit(damage: int) -> void:
 func Bleed() -> void:
 	var blood := EFFECT.instantiate()
 	get_parent().add_child(blood)
+	print("Blood Parent: " + str(get_parent()))
 	blood.SetSprite(blood.BLOOD_SPLATTER_Z)
 	blood.set_z_index(3)
 	blood.position = self.global_position

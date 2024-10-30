@@ -55,6 +55,7 @@ const YELLOW_POINTER := preload("res://assets/graphics/actors/player/yellow_poin
 @onready var Animate := $AnimationPlayer
 @onready var Bandage := $Bandage
 @onready var Pills := $Pills
+@onready var VisionCone := $VisionCone
 # UI Nodes
 @onready var PlayerUI := $PlayerUI
 @onready var HitpointsLabel := $PlayerUI/HitpointsLabel
@@ -85,18 +86,21 @@ const YELLOW_POINTER := preload("res://assets/graphics/actors/player/yellow_poin
 @onready var MaxAmmoCount := $PlayerUI/MaxAmmoCount
 @onready var BleedingSprite := $PlayerUI/BleedingSprite
 @onready var ReloadingSprite := $PlayerUI/ReloadingSprite
+@onready var TimerLabel := $PlayerUI/TimerLabel
+@onready var NotificationLabel := $PlayerUI/NotificationLabel
 
 var node_toggle := true
 
 const ACCELERATION := 200#2000
 const FRICTION := 400#4000
 const TURN_SPEED := 0.15
-var speed := 100#250
+var speed := 100#300
 
 var hitpoints := 100#1000
 var bleeding := false
 var dead := false
 
+var input_allowed := false
 var can_fire := true
 var can_swing := true
 var bat_contact := false
@@ -130,12 +134,14 @@ var moderate_noise_bodies: Array[Object]
 var loud_noise_bodies: Array[Object]
 
 func _ready() -> void:
+	print("Player Parent: " + str(get_parent()))
+	print("PLayer Tree: " + str(get_tree()))
 	#await get_tree().create_timer(1).timeout
 	#speed = 100
 	pass
 
 func _input(event: InputEvent) -> void:
-	if !dead:
+	if !dead and input_allowed:
 		if event.is_action_pressed("walk"):
 			speed = 50
 		elif event.is_action_released("walk"):
@@ -307,8 +313,8 @@ func _input(event: InputEvent) -> void:
 			#var angle = randf_range(0, 2 * PI)
 			#$TestCaster.rotate(angle)
 			#CastToRadius($TestCaster)
-			#Die()
-			RaycastRadius()
+			Die()
+			#RaycastRadius()
 			#CastToRadius()
 			#$TestCaster.target_position = point
 		if event.is_action_pressed("reload"):
@@ -316,7 +322,7 @@ func _input(event: InputEvent) -> void:
 				Reload()
 			elif current_wield == "rifle" and rifle_current_ammo < rifle_max_ammo:
 				Reload()
-			elif current_wield == "shotgun" and shotgun_current_ammo < shotgun_max_ammo:
+			elif current_wield == "shotgun" and shotgun_current_ammo < shotgun_max_ammo and !shotgun_reloading:
 				shotgun_reloading = true
 				ReloadShotgun()
 			else:
@@ -547,6 +553,7 @@ func UILabels() -> void:
 func _physics_process(delta: float) -> void:
 	UILabels()
 	#PlayerInput()
+	#print(shotgun_reloading)
 	#print(current_wield)
 	#print(inventory[3])
 	#print("Bandages: " + str(bandages))
@@ -559,7 +566,7 @@ func _physics_process(delta: float) -> void:
 	#print(loud_noise_bodies)
 	#print(speed)
 	#print(str($BatHitbox/CollisionPolygon2D.disabled))
-	if !dead:
+	if !dead and input_allowed:
 		WeaponCollision()
 		Movement(delta)
 	#var mouse_position = get_global_mouse_position()
@@ -744,14 +751,16 @@ func ReloadShotgun() -> void:
 	ReloadSFX.set_stream(SHOTGUN_RELOAD)
 	ReloadSFX.play()
 	await ReloadSFX.finished
-	shotgun_current_ammo += 1
+	if shotgun_reloading:
+		shotgun_current_ammo += 1
 	if shotgun_current_ammo < shotgun_max_ammo and shotgun_reloading:
 		ReloadShotgun()
-	else:
+	elif shotgun_current_ammo == shotgun_max_ammo and shotgun_reloading:
 		#can_fire = false
 		ReloadSFX.set_stream(SHOTGUN_RACK)
 		ReloadSFX.play()
 		reloading = false
+		shotgun_reloading = false
 		#await ReloadSFX.finished
 		#can_fire = true
 
@@ -981,7 +990,7 @@ func Die() -> void:
 	PlayerSFX.play()
 	NodeToggles()
 	DropAllItems()
-	$VisionCone.visible = false
+	VisionCone.visible = false
 	$SpectatorVision.visible = true
 	# ALL visible/disable code #
 	#self.queue_free()
@@ -1022,13 +1031,19 @@ func NodeToggles() -> void:
 		$GunCollision.set_deferred("enabled", true)
 		$HandgunCollision.set_deferred("enabled", true)
 
-func SpawnWeapon(WeaponScene: Object) -> void: ### NEED TO SWITCH ALL USES OF THIS ###
+func SpawnWeapon(WeaponScene: Object) -> void: ### MIGHT NEED TO KEEP ###
 	var weapon: Object = WeaponScene.instantiate()
 	#print(weapon.get_class())
 	get_parent().add_child(weapon)
+	if WeaponScene == HANDGUN:
+		weapon.current_ammo = handgun_current_ammo
+	elif WeaponScene == RIFLE:
+		weapon.current_ammo = rifle_current_ammo
+	elif WeaponScene == SHOTGUN:
+		weapon.current_ammo = shotgun_current_ammo
 	weapon.position = self.global_position
 
-func SpawnItem(ItemScene: Object) -> void: ### TO THIS ###
+func SpawnItem(ItemScene: Object) -> void:
 	var item: Object = ItemScene.instantiate()
 	get_parent().add_child(item)
 	item.position = self.global_position

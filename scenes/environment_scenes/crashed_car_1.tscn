@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bryrb6aw26scx"]
+
+[ext_resource type="Texture2D" uid="uid://dngb6a26x20nd" path="res://assets/graphics/environment/crashed_car_1.png" id="1_yi7b0"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7hy83"]
+polygon = PackedVector2Array(-28, 52, -25, 55, -19, 56, 5, 56, 11, 55, 14, 52, 14, 18, 18, 18, 19, 17, 19, 16, 32, 16, 33, 15, 33, 7, 20, 7, 18, 8, 15, 9, 14, 9, 14, -51, 10, -55, -24, -55, -28, -51, -28, 15, -33, 15, -33, 17, -32, 18, -28, 18)
+
+[node name="CrashedCar1" type="StaticBody2D" groups=["environment"]]
+scale = Vector2(2, 2)
+collision_layer = 17
+collision_mask = 17
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 0.5)
+texture = ExtResource("1_yi7b0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-25, 55, -19, 55, -19, 56, 5, 56, 5, 55, 11, 55, 14, 52, 14, 18, 18, 18, 20, 16, 32, 16, 33, 15, 33, 7, 20, 7, 15, 9, 14, 9, 14, -51, 10, -55, -24, -55, -28, -51, -28, 15, -33, 15, -33, 17, -32, 18, -28, 18, -28, 52)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_7hy83")

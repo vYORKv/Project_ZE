@@ -58,7 +58,6 @@ target_desired_distance = 5.0
 simplify_path = true
 avoidance_enabled = true
 radius = 16.0
-debug_enabled = true
 
 [node name="LastTargetTimer" type="Timer" parent="."]
 wait_time = 4.0

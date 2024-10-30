@@ -5,3 +5,16 @@ Current bat swing implementation just turns on a zone and turns it off. Need
 to see if there's a reliable way to place a hitbox on the bat as it moves to 
 follow its swing. Might not work because the bat is just a sprite2d node. Would
 likely work with a 2d node with the bat sprite under it.
+
+
+In MP, should have meta zombie spawns all around the map. When they spawn, 
+they should be given an array of all players in match. They should then check 
+and see if all players in map are alive, still connected to the server
+(although, when a player disconnects, they should die), or if they have not 
+extracted from the map. If any of these conditions are false, they should 
+remove that player from their array. After this check, the remaining players 
+should be checked for their distance. The closest player should then be made 
+their current meta target. Every physics process, the zombies should check if 
+their current meta target is dead. If it isn't, they should pursue the player 
+until dead. If it is, they should start the checks for each player again, purging 
+all dead from the array, and selecting the closest player as their new target.

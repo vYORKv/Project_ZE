@@ -35,7 +35,7 @@ offset_top = 617.0
 offset_right = 1165.0
 offset_bottom = 649.0
 theme_override_font_sizes/font_size = 20
-text = "v0.2.1"
+text = "v0.3.3"
 horizontal_alignment = 1
 
 [node name="MainButtons" type="Control" parent="."]
@@ -134,16 +134,27 @@ Q - Drop Item
 1 - Melee Weapon
 2 - Firearm
 3 - Painkillers (Heal)
-4 - Medkit (Heal/Stop Bleeding)"
+4 - Medkit (Heal/Stop Bleeding)
+      - Hold Medkit to use"
 
 [node name="ControlsBackButton" type="Button" parent="Controls"]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 227.0
-offset_right = 102.0
-offset_bottom = 277.0
+offset_left = 24.0
+offset_top = 271.0
+offset_right = 101.0
+offset_bottom = 321.0
 theme_override_font_sizes/font_size = 30
 text = "Back"
+
+[node name="SoloWinLabel" type="Label" parent="."]
+visible = false
+offset_left = 113.0
+offset_top = 168.0
+offset_right = 271.0
+offset_bottom = 203.0
+rotation = -0.492183
+theme_override_font_sizes/font_size = 25
+text = "You escaped!"
 
 [connection signal="pressed" from="MainButtons/MainButtonContainer/SoloButton" to="." method="_on_solo_button_pressed"]
 [connection signal="pressed" from="MainButtons/MainButtonContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]

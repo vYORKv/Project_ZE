@@ -10,13 +10,19 @@ config_version=5
 
 [application]
 
-config/name="ZombieExtractionVS"
+config/name="Project_ZE"
 run/main_scene="res://scenes/meta_scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://erin_icon.png"
+config/windows_native_icon="res://erin_icon.ico"
+
+[autoload]
+
+Global="*res://scripts/meta_scripts/global.gd"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="ignore"
 

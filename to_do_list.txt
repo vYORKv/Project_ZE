@@ -11,4 +11,15 @@ To-Do List
 **6) Create blood variations (both human and z) and all player corpses
 7) Hitpoints bar
 **8) Add variations to zombie death cry
-***9) Fix tilesets for building interiors
+
+Solo Run To-Do
+1) FIX ALL INTANCES (IN ENTIRE PROGRAM) OF GET_PARENT.ADD_CHILD to ADD_CHILD ONLY
+2) Add meta zombie state
+3) Add meta zombie spawner timer
+4) Add intro graphics
+5) Add intro sfx
+6) Add meta spawn sfx
+7) Add "gameover" and "you win" end screens
+8) Change main menu based on if you have successfully complete solo run
+9) Add background spoopy music
+10) Diversify "gray area" tiles and interior floors tiles

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://5hkvm4td338i"]
+
+[ext_resource type="Texture2D" uid="uid://cbe1hh655gnfd" path="res://assets/graphics/environment/police_bus.png" id="1_cjavs"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tiue3"]
+polygon = PackedVector2Array(-9, 105, 10, 105, 14, 104, 16, 103, 22, 100, 25, 97, 26, 95, 27, 92, 28, 87, 28, 73, 30, 73, 34, 71, 34, 69, 31, 69, 29, 70, 28, 70, 28, -29, 29, -29, 29, -52, 28, -52, 28, -95, 27, -98, 26, -100, 23, -103, 19, -104, -18, -104, -22, -103, -25, -100, -26, -98, -27, -95, -27, -52, -28, -52, -28, -29, -27, -29, -27, 69, -33, 69, -33, 71, -29, 73, -27, 73, -27, 87, -26, 92, -25, 95, -24, 97, -21, 100, -19, 101, -17, 102, -15, 103, -13, 104)
+
+[node name="PoliceBus" type="StaticBody2D" groups=["environment"]]
+scale = Vector2(2, 2)
+collision_layer = 17
+collision_mask = 17
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, 0.5)
+texture = ExtResource("1_cjavs")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-9, 105, 10, 105, 14, 104, 16, 103, 18, 102, 20, 101, 22, 100, 23, 99, 24, 98, 25, 97, 26, 95, 27, 92, 28, 87, 28, 73, 30, 73, 32, 72, 34, 71, 34, 69, 31, 69, 29, 70, 28, 70, 28, -29, 29, -29, 29, -52, 28, -52, 28, -95, 27, -98, 26, -100, 25, -101, 24, -102, 23, -103, 19, -104, -18, -104, -22, -103, -25, -100, -26, -98, -27, -95, -27, -52, -28, -52, -28, -29, -27, -29, -27, 69, -33, 69, -33, 71, -29, 73, -27, 73, -27, 87, -26, 92, -25, 95, -24, 97, -21, 100, -19, 101, -17, 102, -15, 103, -13, 104)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_tiue3")
