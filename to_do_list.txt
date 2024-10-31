@@ -12,14 +12,10 @@ To-Do List
 7) Hitpoints bar
 **8) Add variations to zombie death cry
 
-Solo Run To-Do
-1) FIX ALL INTANCES (IN ENTIRE PROGRAM) OF GET_PARENT.ADD_CHILD to ADD_CHILD ONLY
-2) Add meta zombie state
-3) Add meta zombie spawner timer
-4) Add intro graphics
-5) Add intro sfx
-6) Add meta spawn sfx
-7) Add "gameover" and "you win" end screens
-8) Change main menu based on if you have successfully complete solo run
-9) Add background spoopy music
-10) Diversify "gray area" tiles and interior floors tiles
+v 0.3.4 To-Do
+1) Angle all guns to fire more accurately at cursor (move aimpoint directly)
+2) Create crosshair cursor when in game
+3) Resize cars (smaller)
+4) Adjust pathfinding around smaller cars
+5) Increase alert radius of guns (40->50,60->70)
+6) Increase sound radius of zombies (300->500)

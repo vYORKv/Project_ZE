@@ -12,6 +12,7 @@ const BULLET := preload("res://scenes/objects_scenes/bullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.Crosshair()
 	print("Test Arena Parent: " + str(get_parent()))
 	print("Test Arena Tree: " + str(get_tree()))
 	BulletTimer.start()

@@ -6,7 +6,7 @@
 polygon = PackedVector2Array(-28, 52, -25, 55, -19, 56, 5, 56, 11, 55, 14, 52, 14, 18, 18, 18, 19, 17, 19, 16, 32, 16, 33, 15, 33, 7, 20, 7, 18, 8, 15, 9, 14, 9, 14, -51, 10, -55, -24, -55, -28, -51, -28, 15, -33, 15, -33, 17, -32, 18, -28, 18)
 
 [node name="CrashedCar1" type="StaticBody2D" groups=["environment"]]
-scale = Vector2(2, 2)
+scale = Vector2(1.75, 1.75)
 collision_layer = 17
 collision_mask = 17
 

@@ -18,3 +18,13 @@ their current meta target. Every physics process, the zombies should check if
 their current meta target is dead. If it isn't, they should pursue the player 
 until dead. If it is, they should start the checks for each player again, purging 
 all dead from the array, and selecting the closest player as their new target.
+
+
+FIX ALL INTANCES (IN ENTIRE PROGRAM) OF GET_PARENT.ADD_CHILD to ADD_CHILD ONLY
+Need to pay close attention to get_parent().add_child() and add_child(). Nodes
+that are children of levels are able to use "get_parent().add_child()," but
+all "levels" should only use "add_child()" by itself. Otherwise, this creates
+the "meta scenes" like enemy units that always exist in the program regardless
+of where you are. (An example of this is zombies actually moving to and
+existing inside of my main menu when leaving the level and going back to the
+main menu)

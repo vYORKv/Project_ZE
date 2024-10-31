@@ -35,6 +35,7 @@ var meta_ready := false # Create a timer at beginning of mission. On timeout,
 var meta_spawn_ready := false
 
 func _ready() -> void:
+	Global.Crosshair()
 	print("Solo Run Parent: " + str(get_parent()))
 	print("Solo Run Tree: " + str(get_tree()))
 	Player.VisionCone.visible = false
