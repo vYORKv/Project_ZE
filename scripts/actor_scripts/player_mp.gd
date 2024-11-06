@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 # Zoom should be 1.15 (was previously 1.25)
 
+var client_authority: int
+
 const HANDGUN := preload("res://scenes/items_scenes/handgun.tscn")
 const RIFLE := preload("res://scenes/items_scenes/rifle.tscn")
 const SHOTGUN := preload("res://scenes/items_scenes/shotgun.tscn")
@@ -35,9 +37,17 @@ const TAKE_PILLS := preload("res://assets/audio/player_sfx/take_pills.wav")
 const BANDAGING_FULL := preload("res://assets/audio/player_sfx/bandaging_full.wav")
 const BANDAGING_3S := preload("res://assets/audio/player_sfx/bandaging_3s.wav")
 const DIE_MALE := preload("res://assets/audio/player_sfx/die_male.wav")
+const DIE_FEMALE := preload("res://assets/audio/player_sfx/die_female.wav")
 
 # Player Sprites
 const YELLOW_POINTER := preload("res://assets/graphics/actors/player/yellow_pointer.png")
+const BLUE_POINTER := preload("res://assets/graphics/actors/player/blue_pointer.png")
+const BROWN_POINTER := preload("res://assets/graphics/actors/player/brown_pointer.png")
+const ORANGE_POINTER := preload("res://assets/graphics/actors/player/orange_pointer.png")
+const PINK_POINTER := preload("res://assets/graphics/actors/player/pink_pointer.png")
+const PURPLE_POINTER := preload("res://assets/graphics/actors/player/purple_pointer.png")
+const RED_POINTER := preload("res://assets/graphics/actors/player/red_pointer.png")
+const WHITE_POINTER := preload("res://assets/graphics/actors/player/white_pointer.png")
 
 @onready var Bat := $Bat
 @onready var Handgun := $Handgun
@@ -96,6 +106,7 @@ const FRICTION := 400#4000
 const TURN_SPEED := 0.15
 var speed := 100#300
 
+var color := "yellow"
 var hitpoints := 100#1000
 var bleeding := false
 var dead := false
@@ -313,10 +324,11 @@ func _input(event: InputEvent) -> void:
 			#var angle = randf_range(0, 2 * PI)
 			#$TestCaster.rotate(angle)
 			#CastToRadius($TestCaster)
-			Die()
+			#Die()
 			#RaycastRadius()
 			#CastToRadius()
 			#$TestCaster.target_position = point
+			pass
 		if event.is_action_pressed("reload"):
 			if current_wield == "handgun" and handgun_current_ammo < handgun_max_ammo:
 				Reload()
@@ -327,36 +339,6 @@ func _input(event: InputEvent) -> void:
 				ReloadShotgun()
 			else:
 				pass
-
-func RandomPosition(center: Vector2, distance: float) -> Vector2:
-	var random_x := randf() * distance * 2 - distance
-	var random_y := randf() * distance * 2 - distance
-	return Vector2(center.x + random_x, center.y + random_y)
-
-func SpawnItemRandom(center: Vector2, distance: float) -> void:
-	var random_x := randf() * distance * 2 - distance
-	var random_y := randf() * distance * 2 - distance
-	var item_position = Vector2(center.x + random_x, center.y + random_y)
-	$TestSprite.position = item_position
-
-func MoveSpriteRandom(player_position, radius) -> void:
-	var angle = randf_range(0, 2 * PI)
-	var x = cos(angle) * radius
-	var y = sin(angle) * radius
-	var sprite_pos = player_position + Vector2(x, y) 
-	$TestSprite.position = sprite_pos
-
-func GetRandomPointInCircle(player_position, radius) -> Vector2: 
-	var angle = randf_range(0, 2 * PI)
-	var x = cos(angle) * radius
-	var y = sin(angle) * radius
-	return player_position + Vector2(x, y) 
-
-#func GetRadiusPoint(center: Vector2) -> Vector2:
-	#var angle := randf_range(0, TAU)
-	#var distance := center.x + 10
-	#var radius_point := 
-	#return radius_point
 
 func SpawnOnRadius(ITEM) -> void:
 	var angle = randf_range(0, TAU)
@@ -378,20 +360,6 @@ func SpawnOnRadius(ITEM) -> void:
 		get_parent().add_child(item)
 		item.position = item_pos
 		raycast.queue_free()
-
-func RaycastRadius() -> void: ### ONLY FOR TESTING PURPOSES ###
-	var angle = randf_range(0, TAU)
-	var raycast := RayCast2D.new()
-	self.add_child(raycast)
-	raycast.owner = self
-	raycast.set_hit_from_inside(true)
-	raycast.set_target_position(Vector2(0, 40))
-	raycast.rotate(angle)
-	await get_tree().create_timer(.05).timeout
-	if raycast.is_colliding():
-		print("I collided")
-		raycast.queue_free()
-		RaycastRadius()
 
 #func PlayerInput() -> void:
 	#if Input.is_action_pressed("walk"):
@@ -552,63 +520,9 @@ func UILabels() -> void:
 
 func _physics_process(delta: float) -> void:
 	UILabels()
-	#PlayerInput()
-	#print(shotgun_reloading)
-	#print(current_wield)
-	#print(inventory[3])
-	#print("Bandages: " + str(bandages))
-	#print("Pills: " + str(pills))
-	#print("Bleeding: " + str(bleeding))
-	#print("Hitpoints: " + str(hitpoints))
-	#print("Water: " + str(water))
-	#print("Food: " + str(food))
-	#print(inventory_slot)
-	#print(loud_noise_bodies)
-	#print(speed)
-	#print(str($BatHitbox/CollisionPolygon2D.disabled))
 	if !dead and input_allowed:
 		WeaponCollision()
 		Movement(delta)
-	#var mouse_position = get_global_mouse_position()
-	#var direction = (mouse_position - self.position).normalized()
-	##print(direction)
-	#WeaponCollision()
-	## Literal movement
-	#var input_vector = Vector2.ZERO
-	#LookAtMouse()
-	#input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	#input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	#if input_vector != Vector2.ZERO:
-		#velocity = velocity.move_toward(input_vector * speed, ACCELERATION * delta)
-	#else:
-		#velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-	#move_and_slide()
-	
-	# Relative Movement
-	#var direction = (mouse_position - self.position).normalized()
-	#var direction_x = direction.orthogonal()
-	#LookAtMouse()
-	#if Input.get_action_strength("ui_up"):
-		#velocity = velocity.move_toward(direction * speed, ACCELERATION * delta)
-	#elif Input.get_action_strength("ui_down"):
-		#velocity = velocity.move_toward(-direction * (speed * .6), ACCELERATION * delta)
-	#elif Input.get_action_strength("ui_left"):
-		#velocity = velocity.move_toward(direction_x * (speed), ACCELERATION * delta) #Was (max_speed * .6)
-	#elif Input.get_action_strength("ui_right"):
-		#velocity = velocity.move_toward(-direction_x * (speed), ACCELERATION * delta) #Was (max_speed * .6)
-	#else:
-		#velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-	#move_and_slide()
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	#var direction := Input.get_axis("ui_left", "ui_right")
-	#if direction:
-		#velocity.x = direction * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
-#
-	#move_and_slide()
 
 func Movement(delta: float) -> void:
 	var mouse_position := get_global_mouse_position()
@@ -658,15 +572,12 @@ func ShootHandgun() -> void:
 	GunSFX.set_volume_db(0.0)
 	GunSFX.set_max_distance(1500.00)
 	GunSFX.play()
-	#var mouse_position := get_global_mouse_position()
 	var bullet := BULLET.instantiate()
 	bullet.type = "handgun"
 	get_parent().add_child(bullet)
 	bullet.position = $Handgun/Barrel.global_position
 	bullet.look_at($Handgun/Aim.global_position)
 	bullet.velocity = $Handgun/Aim.global_position - bullet.position
-	#bullet.look_at(mouse_position)
-	#bullet.velocity = mouse_position - bullet.position
 
 func ShootRifle() -> void:
 	MakeNoise("loud")
@@ -674,18 +585,14 @@ func ShootRifle() -> void:
 	GunSFX.set_volume_db(0.0)
 	GunSFX.set_max_distance(3000.0)
 	GunSFX.play()
-	#var mouse_position := get_global_mouse_position()
 	var bullet := BULLET.instantiate()
 	bullet.type = "rifle"
 	get_parent().add_child(bullet)
 	bullet.position = $Rifle/Barrel.global_position
 	bullet.look_at($Rifle/Aim.global_position)
 	bullet.velocity = $Rifle/Aim.global_position - bullet.position
-	#bullet.look_at(mouse_position)
-	#bullet.velocity = mouse_position - bullet.position
 
 func ShootShotgun() -> void:
-	#await GunSFX.finished
 	MakeNoise("loud")
 	GunSFX.set_stream(SHOTGUN_SHOT)
 	GunSFX.set_volume_db(0.0)
@@ -742,11 +649,8 @@ func Reload() -> void:
 		await ReloadSFX.finished
 		reloading = false
 		rifle_current_ammo = rifle_max_ammo
-	#elif current_weapon == "shotgun":
-		#shotgun_current_ammo += 1
 
 func ReloadShotgun() -> void:
-	#ShotgunTimer.start()
 	reloading = false
 	ReloadSFX.set_stream(SHOTGUN_RELOAD)
 	ReloadSFX.play()
@@ -756,22 +660,15 @@ func ReloadShotgun() -> void:
 	if shotgun_current_ammo < shotgun_max_ammo and shotgun_reloading:
 		ReloadShotgun()
 	elif shotgun_current_ammo == shotgun_max_ammo and shotgun_reloading:
-		#can_fire = false
 		ReloadSFX.set_stream(SHOTGUN_RACK)
 		ReloadSFX.play()
 		reloading = false
 		shotgun_reloading = false
-		#await ReloadSFX.finished
-		#can_fire = true
 
 func Hit(damage: int) -> void:
 	PlayerSFX.set_stream(BULLET_HIT_ACTOR)
 	PlayerSFX.play()
-	print(hitpoints)
-	#Play SFX
-	#Bleed
 	hitpoints -= damage
-	print(hitpoints)
 	if hitpoints <= 0:
 		Die()
 
@@ -784,10 +681,10 @@ func Bleed() -> void:
 	if bleeding:
 		var blood := EFFECT.instantiate()
 		get_parent().add_child(blood)
-		blood.RandomSprite(blood.human_blood)
+		blood.SetSprite(blood.BLOOD_SPLATTER)
 		blood.set_z_index(3)
 		blood.position = self.global_position
-		Damage(5)
+		Damage(10)
 		await get_tree().create_timer(3).timeout
 		Bleed()
 
@@ -819,127 +716,6 @@ func TakePills() -> void:
 	else:
 		var missing_hp = 100 - hitpoints
 		hitpoints += missing_hp
-
-#func DropOnDeath() -> void:
-	#var angle = randf_range(0, TAU)
-	#var item_pos: Vector2
-	#var item: Object #= HANDGUN.instantiate()
-	#var raycast := RayCast2D.new()
-	#self.add_child(raycast)
-	#raycast.owner = self
-	#raycast.set_hit_from_inside(true)
-	#raycast.set_target_position(Vector2(0, 40))
-	##print("Ray's Global: " + str(ray.to_global(ray.target_position)))
-	#raycast.rotate(angle)
-	## Test for wall collisions
-	## If wall collision, then rotate again, if not contine
-	##ray.set_target_position(Vector2(0, 30))
-	#
-	##get_parent().add_child(item)
-	## Spawn item on ray.target_position
-	## var spawn_position = ray.target_position
-	## var item = instance scene
-	## item.position = ray.target_position
-	#await get_tree().create_timer(.05).timeout
-	#if inventory[1] != "none":
-		#if inventory[1] == "handgun":
-			#if raycast.is_colliding():
-				#print("I collided handgun")
-				#raycast.queue_free()
-				#DropOnDeath()
-			#else:
-				#raycast.set_target_position(Vector2(0, 30))
-				#item_pos = raycast.to_global(raycast.target_position)
-				#item = HANDGUN.instantiate()
-				#get_parent().add_child(item)
-				#item.position = item_pos
-				#inventory[1] = "none"
-				#raycast.queue_free()
-				#DropOnDeath()
-		#elif inventory[1] == "rifle":
-			#if raycast.is_colliding():
-				#print("I collided rifle")
-				#raycast.queue_free()
-				#DropOnDeath()
-			#else:
-				#raycast.set_target_position(Vector2(0, 30))
-				#item_pos = raycast.to_global(raycast.target_position)
-				#item = RIFLE.instantiate()
-				#get_parent().add_child(item)
-				#item.position = item_pos
-				#inventory[1] = "none"
-				#raycast.queue_free()
-				#DropOnDeath()
-		#elif inventory[1] == "shotgun":
-			#if raycast.is_colliding():
-				#raycast.queue_free()
-				#DropOnDeath()
-			#else:
-				#raycast.set_target_position(Vector2(0, 30))
-				#item_pos = raycast.to_global(raycast.target_position)
-				#item = SHOTGUN.instantiate()
-				#get_parent().add_child(item)
-				#item.position = item_pos
-				#inventory[1] = "none"
-				#raycast.queue_free()
-				#DropOnDeath()
-	#if pills > 0:
-		#for i in pills:
-			#if raycast.is_colliding():
-				#raycast.queue_free()
-				#DropOnDeath()
-			#else:
-				#raycast.set_target_position(Vector2(0, 30))
-				#item_pos = raycast.to_global(raycast.target_position)
-				#item = PILLS.instantiate()
-				#get_parent().add_child(item)
-				#item.position = item_pos
-				#pills -= 1
-				#raycast.queue_free()
-				#DropOnDeath()
-	#if bandages > 0: 
-		#for i in bandages:
-			#if raycast.is_colliding():
-				#raycast.queue_free()
-				#DropOnDeath()
-			#else:
-				#raycast.set_target_position(Vector2(0, 30))
-				#item_pos = raycast.to_global(raycast.target_position)
-				#item = BANDAGE.instantiate()
-				#get_parent().add_child(item)
-				#item.position = item_pos
-				#bandages -= 1
-				#raycast.queue_free()
-				#DropOnDeath()
-	#if food > 0:
-		#for i in food:
-			#if raycast.is_colliding():
-				#raycast.queue_free()
-				#DropOnDeath()
-			#else:
-				#raycast.set_target_position(Vector2(0, 30))
-				#item_pos = raycast.to_global(raycast.target_position)
-				#item = FOOD.instantiate()
-				#get_parent().add_child(item)
-				#item.position = item_pos
-				#food -= 1
-				#raycast.queue_free()
-				#DropOnDeath()
-	#if water > 0:
-		#for i in water:
-			#if raycast.is_colliding():
-				#raycast.queue_free()
-				#DropOnDeath()
-			#else:
-				#raycast.set_target_position(Vector2(0, 30))
-				#item_pos = raycast.to_global(raycast.target_position)
-				#item = WATER.instantiate()
-				#get_parent().add_child(item)
-				#item.position = item_pos
-				#water -= 1
-				#raycast.queue_free()
-				#DropOnDeath()
-	#raycast.queue_free()
 
 func DropAllItems() -> void:
 	if inventory[1] != "none":
@@ -978,30 +754,26 @@ func Die() -> void:
 	Bandage.visible = false
 	PlayerSFX.stop()
 	var corpse := EFFECT.instantiate()
-	#var death_cry := EFFECT_AUDIO.instantiate()
 	get_parent().add_child(corpse)
-	#get_parent().add_child(death_cry)
-	#death_cry.Play(death_cry.DEATH_CRY_Z)
-	corpse.SetSprite(corpse.YELLOW_CORPSE)
-	#death_cry.position = self.global_position
+	corpse.CorpseSprite(color)
 	corpse.position = self.global_position
 	# ALL visible/disable code #
-	PlayerSFX.set_stream(DIE_MALE)
+	if color == "pink":
+		PlayerSFX.set_stream(DIE_FEMALE)
+	else:
+		PlayerSFX.set_stream(DIE_MALE)
 	PlayerSFX.play()
 	NodeToggles()
 	DropAllItems()
 	VisionCone.visible = false
 	$SpectatorVision.visible = true
 	# ALL visible/disable code #
-	#self.queue_free()
 
 func NodeToggles() -> void:
 	if node_toggle:
 		PlayerUI.visible = false
 		$Sprite2D.visible = false
 		$CollisionShape2D.set_deferred("disabled", true)
-		#$Hurtbox.set_deferred("monitorable", false)
-		#$Hurtbox.set_deferred("monitoring", false)
 		$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 		$NoiseLow/CollisionShape2D.set_deferred("disabled", true)
 		$NoiseModerate/CollisionShape2D.set_deferred("disabled", true)
@@ -1013,14 +785,11 @@ func NodeToggles() -> void:
 		$HandgunCollision.set_deferred("enabled", false)
 		FootstepSFX.stop()
 		ReloadSFX.stop()
-		#PlayerSFX.stop()
 		ShotgunSFX.stop()
 	elif !node_toggle:
 		PlayerUI.visible = true
 		$Sprite2D.visible = true
 		$CollisionShape2D.set_deferred("disabled", false)
-		#$Hurtbox.set_deferred("monitorable", true)
-		#$Hurtbox.set_deferred("monitoring", true)
 		$Hurtbox/CollisionShape2D.set_deferred("disabled", false)
 		$NoiseLow/CollisionShape2D.set_deferred("disabled", false)
 		$NoiseModerate/CollisionShape2D.set_deferred("disabled", false)
@@ -1033,7 +802,6 @@ func NodeToggles() -> void:
 
 func SpawnWeapon(WeaponScene: Object) -> void: ### MIGHT NEED TO KEEP ###
 	var weapon: Object = WeaponScene.instantiate()
-	#print(weapon.get_class())
 	get_parent().add_child(weapon)
 	if WeaponScene == HANDGUN:
 		weapon.current_ammo = handgun_current_ammo

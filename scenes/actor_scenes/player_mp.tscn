@@ -1,0 +1,665 @@
+[gd_scene load_steps=40 format=3 uid="uid://dyjf7v4pg7brh"]
+
+[ext_resource type="Script" path="res://scripts/actor_scripts/player_mp.gd" id="1_g0s2s"]
+[ext_resource type="Texture2D" uid="uid://cintmrmr5qntm" path="res://assets/graphics/effects/approx_200_pixels.png" id="2_h5srr"]
+[ext_resource type="Texture2D" uid="uid://frw0g557j7s" path="res://assets/graphics/actors/player/yellow_pointer.png" id="3_erfuv"]
+[ext_resource type="Texture2D" uid="uid://dcwem7sgu0cxm" path="res://assets/graphics/wield_weapons/handgun_wield.png" id="3_l8jtg"]
+[ext_resource type="Texture2D" uid="uid://cnrajj4vyvbpr" path="res://assets/graphics/wield_weapons/rifle_wield.png" id="4_8e2kk"]
+[ext_resource type="Texture2D" uid="uid://87gt6qgi3ma2" path="res://assets/graphics/weapons/bat.png" id="4_ov8f3"]
+[ext_resource type="Texture2D" uid="uid://m4dsmsd50d20" path="res://assets/graphics/wield_weapons/shotgun_wield.png" id="5_m4tca"]
+[ext_resource type="Texture2D" uid="uid://bsods7mcx2jf7" path="res://assets/graphics/items/pills.png" id="7_stsdc"]
+[ext_resource type="Texture2D" uid="uid://cqltaw7eg4m0d" path="res://assets/graphics/effects/spectator_circle.png" id="8_cc0uk"]
+[ext_resource type="Texture2D" uid="uid://1ryaw625tra2" path="res://assets/graphics/items/medkit.png" id="8_wujhr"]
+[ext_resource type="Texture2D" uid="uid://8vikb7twvu68" path="res://assets/graphics/effects/vision_cone_2_updated_2.png" id="10_kro0q"]
+[ext_resource type="Texture2D" uid="uid://5n5mscuod46p" path="res://assets/graphics/ui/inventory_bg_3.png" id="12_b3m6f"]
+[ext_resource type="Texture2D" uid="uid://cgtp0t0hogpc8" path="res://assets/graphics/weapons/handgun.png" id="13_s7swa"]
+[ext_resource type="Texture2D" uid="uid://ch4wccbp2r87y" path="res://assets/graphics/weapons/rifle.png" id="14_oyorf"]
+[ext_resource type="Texture2D" uid="uid://v3d6nlu417hs" path="res://assets/graphics/weapons/shotgun.png" id="15_b8y2j"]
+[ext_resource type="Texture2D" uid="uid://com3cawriwpag" path="res://assets/graphics/items/water.png" id="16_wiwvk"]
+[ext_resource type="Texture2D" uid="uid://ciio5fy72d0sa" path="res://assets/graphics/items/food.png" id="17_aq34e"]
+[ext_resource type="Texture2D" uid="uid://ccv2omdaasqal" path="res://assets/graphics/ui/bleeding_ui.png" id="18_se17p"]
+[ext_resource type="Texture2D" uid="uid://8ilmk1ccxbka" path="res://assets/graphics/ui/reloading_ui.png" id="19_vkvex"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3lxry"]
+light_mode = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_me7vp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yodbx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_18pj6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dlhlm"]
+
+[sub_resource type="Animation" id="Animation_7c7p0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 15.735)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bat:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.79253]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BatHitbox/CollisionPolygon2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_guk6s"]
+resource_name = "bat_swing"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.166667, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(10, 15.7351), Vector2(17.6811, 7.65673), Vector2(18.7406, -0.0243816), Vector2(13, -13), Vector2(10, 15.7351)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bat:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.166667, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.79253, 1.97571, 1.57429, 0.708604, 2.79253]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bat:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.25, 1.25), Vector2(1.25, 1.25)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BatHitbox/CollisionPolygon2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cj7u2"]
+_data = {
+"RESET": SubResource("Animation_7c7p0"),
+"bat_swing": SubResource("Animation_guk6s")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iketj"]
+atlas = ExtResource("19_vkvex")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hd6yb"]
+atlas = ExtResource("19_vkvex")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au2v8"]
+atlas = ExtResource("19_vkvex")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlqa4"]
+atlas = ExtResource("19_vkvex")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yswkw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iketj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hd6yb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au2v8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlqa4")
+}],
+"loop": true,
+"name": &"reloading_anim",
+"speed": 9.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3gwk"]
+atlas = ExtResource("18_se17p")
+region = Rect2(0, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66cw4"]
+atlas = ExtResource("18_se17p")
+region = Rect2(30, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3nl2"]
+atlas = ExtResource("18_se17p")
+region = Rect2(60, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dug1u"]
+atlas = ExtResource("18_se17p")
+region = Rect2(90, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6po6e"]
+atlas = ExtResource("18_se17p")
+region = Rect2(120, 0, 30, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i45fb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3gwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66cw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3nl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dug1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6po6e")
+}],
+"loop": true,
+"name": &"bleeding_anim",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jwx83"]
+
+[node name="Player" type="CharacterBody2D" groups=["actors", "player"]]
+z_index = 5
+collision_layer = 33
+collision_mask = 33
+wall_min_slide_angle = 0.0174533
+script = ExtResource("1_g0s2s")
+metadata/_edit_horizontal_guides_ = [592.0]
+metadata/_edit_vertical_guides_ = [576.0]
+
+[node name="PixelRange" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_h5srr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_3lxry")
+position = Vector2(2.5, 0)
+rotation = 1.5708
+texture = ExtResource("3_erfuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.4, 1.4)
+shape = SubResource("CircleShape2D_me7vp")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+scale = Vector2(1.4, 1.4)
+shape = SubResource("CircleShape2D_me7vp")
+
+[node name="BatHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BatHitbox"]
+polygon = PackedVector2Array(10, -11, 26, -17, 31, -13, 34, -7, 34, 7, 31, 13, 26, 17, 10, 11, 15, 4, 15, -4)
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.15, 1.15)
+
+[node name="Bat" type="Sprite2D" parent="."]
+position = Vector2(10, 15.735)
+rotation = 2.79253
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("4_ov8f3")
+
+[node name="Handgun" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(17, 10)
+rotation = 1.48353
+texture = ExtResource("3_l8jtg")
+
+[node name="Barrel" type="Marker2D" parent="Handgun"]
+position = Vector2(0, -6)
+scale = Vector2(0.25, 0.25)
+
+[node name="Aim" type="Marker2D" parent="Handgun"]
+position = Vector2(0.746921, -20.011)
+scale = Vector2(0.25, 0.25)
+
+[node name="Rifle" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(20, 10)
+rotation = 1.48353
+texture = ExtResource("4_8e2kk")
+
+[node name="Barrel" type="Marker2D" parent="Rifle"]
+position = Vector2(0, -13)
+scale = Vector2(0.25, 0.25)
+
+[node name="Aim" type="Marker2D" parent="Rifle"]
+position = Vector2(0.819359, -25.072)
+scale = Vector2(0.25, 0.25)
+
+[node name="Shotgun" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(20, 10)
+rotation = 1.48353
+texture = ExtResource("5_m4tca")
+
+[node name="Barrel" type="Marker2D" parent="Shotgun"]
+position = Vector2(0, -13.5)
+scale = Vector2(0.25, 0.25)
+
+[node name="Aim1" type="Marker2D" parent="Shotgun"]
+position = Vector2(-2.4756, -25.0477)
+scale = Vector2(0.25, 0.25)
+
+[node name="Aim2" type="Marker2D" parent="Shotgun"]
+position = Vector2(-1.15572, -25.0382)
+scale = Vector2(0.25, 0.25)
+
+[node name="Aim3" type="Marker2D" parent="Shotgun"]
+position = Vector2(0, -25)
+scale = Vector2(0.25, 0.25)
+
+[node name="Aim4" type="Marker2D" parent="Shotgun"]
+position = Vector2(1.18759, -25.0444)
+scale = Vector2(0.25, 0.25)
+
+[node name="Aim5" type="Marker2D" parent="Shotgun"]
+position = Vector2(2.39344, -24.9389)
+scale = Vector2(0.25, 0.25)
+
+[node name="Pills" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(12, 10)
+rotation = 0.523599
+texture = ExtResource("7_stsdc")
+
+[node name="Bandage" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(12, 10)
+rotation = 0.523599
+texture = ExtResource("8_wujhr")
+
+[node name="GunCollision" type="RayCast2D" parent="."]
+position = Vector2(6.5, 11.25)
+rotation = -1.65981
+target_position = Vector2(0, 29)
+collision_mask = 16
+hit_from_inside = true
+
+[node name="HandgunCollision" type="RayCast2D" parent="."]
+position = Vector2(11, 11)
+rotation = -1.71042
+target_position = Vector2(0, 18)
+collision_mask = 16
+hit_from_inside = true
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="BandageTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="SwingTimer" type="Timer" parent="."]
+
+[node name="VisionCone" type="PointLight2D" parent="."]
+rotation = 1.5708
+color = Color(1, 1, 1, 0.435294)
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = ExtResource("10_kro0q")
+offset = Vector2(0, -307)
+
+[node name="SpectatorVision" type="PointLight2D" parent="."]
+visible = false
+scale = Vector2(3, 3)
+color = Color(1, 1, 1, 0.435294)
+range_item_cull_mask = 31
+texture = ExtResource("8_cc0uk")
+
+[node name="GunSFX" type="AudioStreamPlayer2D" parent="."]
+max_distance = 1000.0
+
+[node name="FootstepSFX" type="AudioStreamPlayer2D" parent="."]
+volume_db = -6.0
+max_distance = 500.0
+attenuation = 2.0
+
+[node name="ReloadSFX" type="AudioStreamPlayer2D" parent="."]
+max_distance = 200.0
+attenuation = 2.0
+
+[node name="PlayerSFX" type="AudioStreamPlayer2D" parent="."]
+max_distance = 300.0
+attenuation = 2.0
+
+[node name="ShotgunSFX" type="AudioStreamPlayer2D" parent="."]
+max_distance = 500.0
+
+[node name="NoiseLow" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoiseLow"]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_yodbx")
+
+[node name="NoiseModerate" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoiseModerate"]
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_18pj6")
+
+[node name="NoiseLoud" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoiseLoud"]
+scale = Vector2(70, 70)
+shape = SubResource("CircleShape2D_dlhlm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cj7u2")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="PlayerUI" type="CanvasLayer" parent="."]
+
+[node name="HitpointsLabel" type="Label" parent="PlayerUI"]
+offset_left = 1082.0
+offset_top = 600.0
+offset_right = 1122.0
+offset_bottom = 623.0
+text = "HP:100"
+
+[node name="InventoryBG" type="Sprite2D" parent="PlayerUI"]
+position = Vector2(248, 605)
+scale = Vector2(1, 0.58)
+texture = ExtResource("12_b3m6f")
+
+[node name="Select1" type="ColorRect" parent="PlayerUI"]
+offset_left = 13.0
+offset_top = 577.0
+offset_right = 149.0
+offset_bottom = 634.0
+color = Color(0.475571, 0.64636, 0.31876, 1)
+
+[node name="InvBat" type="Sprite2D" parent="PlayerUI"]
+position = Vector2(85, 604)
+rotation = 1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("4_ov8f3")
+
+[node name="Select2" type="ColorRect" parent="PlayerUI"]
+visible = false
+offset_left = 158.0
+offset_top = 577.0
+offset_right = 326.0
+offset_bottom = 634.0
+color = Color(0.475571, 0.64636, 0.31876, 1)
+
+[node name="InvHandgun" type="Sprite2D" parent="PlayerUI"]
+visible = false
+position = Vector2(237, 600)
+scale = Vector2(4, 4)
+texture = ExtResource("13_s7swa")
+
+[node name="InvRifle" type="Sprite2D" parent="PlayerUI"]
+visible = false
+position = Vector2(237, 604)
+scale = Vector2(4, 4)
+texture = ExtResource("14_oyorf")
+
+[node name="InvShotgun" type="Sprite2D" parent="PlayerUI"]
+visible = false
+position = Vector2(245, 596)
+scale = Vector2(4, 4)
+texture = ExtResource("15_b8y2j")
+
+[node name="Select3" type="ColorRect" parent="PlayerUI"]
+visible = false
+offset_left = 335.0
+offset_top = 577.0
+offset_right = 403.0
+offset_bottom = 634.0
+color = Color(0.475571, 0.64636, 0.31876, 1)
+
+[node name="InvPills" type="Sprite2D" parent="PlayerUI"]
+visible = false
+position = Vector2(367, 606)
+scale = Vector2(4, 4)
+texture = ExtResource("7_stsdc")
+
+[node name="Select4" type="ColorRect" parent="PlayerUI"]
+visible = false
+offset_left = 412.0
+offset_top = 577.0
+offset_right = 488.0
+offset_bottom = 634.0
+color = Color(0.475571, 0.64636, 0.31876, 1)
+
+[node name="InvBandage" type="Sprite2D" parent="PlayerUI"]
+visible = false
+position = Vector2(446, 606)
+scale = Vector2(4, 4)
+texture = ExtResource("8_wujhr")
+
+[node name="WaterBG" type="ColorRect" parent="PlayerUI"]
+offset_left = 7.0
+offset_top = 462.0
+offset_right = 66.0
+offset_bottom = 504.0
+color = Color(0.294118, 0.411765, 0.184314, 1)
+
+[node name="FoodBG" type="ColorRect" parent="PlayerUI"]
+offset_left = 7.0
+offset_top = 510.0
+offset_right = 66.0
+offset_bottom = 552.0
+color = Color(0.294118, 0.411765, 0.184314, 1)
+
+[node name="WaterCount" type="Label" parent="PlayerUI"]
+offset_left = 42.0
+offset_top = 480.0
+offset_right = 82.0
+offset_bottom = 503.0
+text = "x0"
+
+[node name="FoodCount" type="Label" parent="PlayerUI"]
+offset_left = 41.0
+offset_top = 527.0
+offset_right = 81.0
+offset_bottom = 550.0
+text = "x0"
+
+[node name="Water" type="Sprite2D" parent="PlayerUI"]
+position = Vector2(25, 483)
+scale = Vector2(2, 2)
+texture = ExtResource("16_wiwvk")
+
+[node name="Food" type="Sprite2D" parent="PlayerUI"]
+position = Vector2(25, 530)
+scale = Vector2(3, 3)
+texture = ExtResource("17_aq34e")
+
+[node name="Inv1" type="Label" parent="PlayerUI"]
+offset_left = 15.0
+offset_top = 573.0
+offset_right = 55.0
+offset_bottom = 608.0
+text = "1"
+
+[node name="Inv2" type="Label" parent="PlayerUI"]
+offset_left = 159.0
+offset_top = 573.0
+offset_right = 199.0
+offset_bottom = 596.0
+text = "2"
+
+[node name="Inv3" type="Label" parent="PlayerUI"]
+offset_left = 336.0
+offset_top = 573.0
+offset_right = 376.0
+offset_bottom = 596.0
+text = "3"
+
+[node name="Inv4" type="Label" parent="PlayerUI"]
+offset_left = 413.0
+offset_top = 573.0
+offset_right = 453.0
+offset_bottom = 596.0
+text = "4"
+
+[node name="PillsCount" type="Label" parent="PlayerUI"]
+visible = false
+offset_left = 383.0
+offset_top = 606.0
+offset_right = 423.0
+offset_bottom = 629.0
+text = "x0"
+
+[node name="BandageCount" type="Label" parent="PlayerUI"]
+visible = false
+offset_left = 469.0
+offset_top = 606.0
+offset_right = 509.0
+offset_bottom = 629.0
+text = "x0"
+
+[node name="AmmoCount" type="Label" parent="PlayerUI"]
+visible = false
+offset_left = 258.0
+offset_top = 610.0
+offset_right = 310.0
+offset_bottom = 633.0
+text = "30"
+horizontal_alignment = 1
+
+[node name="MaxAmmoCount" type="Label" parent="PlayerUI"]
+visible = false
+offset_left = 296.0
+offset_top = 610.0
+offset_right = 339.0
+offset_bottom = 633.0
+text = "/ 8"
+
+[node name="ReloadingSprite" type="AnimatedSprite2D" parent="PlayerUI"]
+visible = false
+position = Vector2(284, 622)
+sprite_frames = SubResource("SpriteFrames_yswkw")
+animation = &"reloading_anim"
+frame = 1
+frame_progress = 0.852898
+
+[node name="BleedingSprite" type="AnimatedSprite2D" parent="PlayerUI"]
+visible = false
+position = Vector2(1060, 611)
+sprite_frames = SubResource("SpriteFrames_i45fb")
+animation = &"bleeding_anim"
+frame_progress = 0.566438
+
+[node name="TimerLabel" type="Label" parent="PlayerUI"]
+visible = false
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 72.0
+offset_bottom = 55.0
+text = "3:00"
+
+[node name="HordeLabel" type="Label" parent="PlayerUI/TimerLabel"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -10.0
+offset_right = 85.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 10
+text = "Horde Arrival..."
+
+[node name="NotificationLabel" type="Label" parent="PlayerUI"]
+visible = false
+offset_left = 480.0
+offset_top = 64.0
+offset_right = 672.0
+offset_bottom = 87.0
+text = "The Horde Approaches"
+horizontal_alignment = 1
+
+[node name="TestCaster" type="RayCast2D" parent="."]
+visible = false
+enabled = false
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_jwx83")
+
+[connection signal="area_entered" from="BatHitbox" to="." method="_on_bat_hitbox_area_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="BandageTimer" to="." method="_on_bandage_timer_timeout"]
+[connection signal="timeout" from="SwingTimer" to="." method="_on_swing_timer_timeout"]
+[connection signal="body_entered" from="NoiseLow" to="." method="_on_noise_low_body_entered"]
+[connection signal="body_exited" from="NoiseLow" to="." method="_on_noise_low_body_exited"]
+[connection signal="body_entered" from="NoiseModerate" to="." method="_on_noise_moderate_body_entered"]
+[connection signal="body_exited" from="NoiseModerate" to="." method="_on_noise_moderate_body_exited"]
+[connection signal="body_entered" from="NoiseLoud" to="." method="_on_noise_loud_body_entered"]
+[connection signal="body_exited" from="NoiseLoud" to="." method="_on_noise_loud_body_exited"]

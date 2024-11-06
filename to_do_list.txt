@@ -5,17 +5,9 @@ To-Do List
 	disabled while player is dead, excluding all inputs that are available 
 	outside of gameplay (hitting esc for menu, etc.)
 *2) Create longer zombie aggro audio files
-***3) Build out Solo Run level with full scripting and ai pathing
-4) Bleeding Animated Sprite
-5) Place corpse pngs inside of effect_sprite
-**6) Create blood variations (both human and z) and all player corpses
+3) 
+4) 
+5) 
+6)
 7) Hitpoints bar
 **8) Add variations to zombie death cry
-
-v 0.3.4 To-Do
-1) Angle all guns to fire more accurately at cursor (move aimpoint directly)
-2) Create crosshair cursor when in game
-3) Resize cars (smaller)
-4) Adjust pathfinding around smaller cars
-5) Increase alert radius of guns (40->50,60->70)
-6) Increase sound radius of zombies (300->500)

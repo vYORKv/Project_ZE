@@ -669,6 +669,7 @@ func Bite(victim: Object) -> void:
 	if bleed_chance == 3 and !victim.bleeding:
 		#print("Start Bleed")
 		victim.bleeding = true
+		victim.Damage(5)
 		victim.Bleed()
 	else:
 		#print("Passed")
@@ -728,7 +729,7 @@ func Bleed() -> void:
 	var blood := EFFECT.instantiate()
 	get_parent().add_child(blood)
 	print("Blood Parent: " + str(get_parent()))
-	blood.SetSprite(blood.BLOOD_SPLATTER_Z)
+	blood.RandomSprite(blood.zombie_blood)
 	blood.set_z_index(3)
 	blood.position = self.global_position
 

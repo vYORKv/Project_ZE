@@ -1,6 +1,309 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmc6queajy47l"]
+[gd_scene load_steps=9 format=3 uid="uid://cmc6queajy47l"]
 
 [ext_resource type="Script" path="res://scripts/meta_scripts/lobby.gd" id="1_eqq0h"]
+[ext_resource type="Texture2D" uid="uid://2mpc4jw3l544" path="res://assets/graphics/actors/player/player_blue.png" id="2_fq51c"]
+[ext_resource type="Texture2D" uid="uid://c4vjvswdx3gmr" path="res://assets/graphics/actors/player/player_orange.png" id="3_vamd0"]
+[ext_resource type="Texture2D" uid="uid://gdhe6o8ec6ka" path="res://assets/graphics/actors/player/player_pink.png" id="4_bt4d8"]
+[ext_resource type="Texture2D" uid="uid://cgbulixgmrwsm" path="res://assets/graphics/actors/player/player_purple.png" id="5_wlabn"]
+[ext_resource type="Texture2D" uid="uid://c73m8t3fwbl5i" path="res://assets/graphics/actors/player/player_white.png" id="6_g3vek"]
+[ext_resource type="Texture2D" uid="uid://d1jb1a0xspknr" path="res://assets/graphics/actors/player/player_yellow.png" id="7_06csn"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8chxd"]
 
 [node name="Lobby" type="Node2D"]
 script = ExtResource("1_eqq0h")
+metadata/_edit_vertical_guides_ = [576.0, 399.0, 481.0]
+
+[node name="HostJoinMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HostButton" type="Button" parent="HostJoinMenu"]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 261.0
+offset_right = 661.0
+offset_bottom = 318.0
+theme_override_font_sizes/font_size = 35
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="HostJoinMenu"]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 348.0
+offset_right = 661.0
+offset_bottom = 405.0
+theme_override_font_sizes/font_size = 35
+text = "Join"
+
+[node name="NameEntry" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="NameEntry"]
+layout_mode = 0
+offset_left = 530.0
+offset_top = 285.0
+offset_right = 622.0
+offset_bottom = 308.0
+text = "Enter Name"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="NameEntry"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 320.0
+offset_right = 644.0
+offset_bottom = 351.0
+max_length = 10
+
+[node name="Label2" type="Label" parent="NameEntry"]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 363.0
+offset_right = 689.0
+offset_bottom = 386.0
+text = "* Please enter a valid name *"
+
+[node name="JoinEntry" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="JoinEntry"]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 271.0
+offset_right = 639.0
+offset_bottom = 294.0
+text = "Enter Host IP"
+horizontal_alignment = 1
+
+[node name="AddressEntry" type="LineEdit" parent="JoinEntry"]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 304.0
+offset_right = 666.0
+offset_bottom = 335.0
+
+[node name="JEBackButton" type="Button" parent="JoinEntry"]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 356.0
+offset_right = 609.0
+offset_bottom = 399.0
+theme_override_font_sizes/font_size = 25
+text = "Back"
+
+[node name="PreGameLobby" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BluePlayer" type="Sprite2D" parent="PreGameLobby"]
+position = Vector2(149, 66)
+texture = ExtResource("2_fq51c")
+
+[node name="OrangePlayer" type="Sprite2D" parent="PreGameLobby"]
+position = Vector2(149, 162)
+texture = ExtResource("3_vamd0")
+
+[node name="PinkPlayer" type="Sprite2D" parent="PreGameLobby"]
+position = Vector2(149, 258)
+texture = ExtResource("4_bt4d8")
+
+[node name="PurplePlayer" type="Sprite2D" parent="PreGameLobby"]
+position = Vector2(149, 354)
+texture = ExtResource("5_wlabn")
+
+[node name="WhitePlayer" type="Sprite2D" parent="PreGameLobby"]
+position = Vector2(149, 450)
+texture = ExtResource("6_g3vek")
+
+[node name="YellowPlayer" type="Sprite2D" parent="PreGameLobby"]
+position = Vector2(149, 546)
+texture = ExtResource("7_06csn")
+
+[node name="BlueButton" type="Button" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 49.0
+offset_right = 279.0
+offset_bottom = 85.0
+theme_override_font_sizes/font_size = 20
+text = "Select"
+
+[node name="OrangeButton" type="Button" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 143.0
+offset_right = 279.0
+offset_bottom = 179.0
+theme_override_font_sizes/font_size = 20
+text = "Select"
+
+[node name="PinkButton" type="Button" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 241.0
+offset_right = 279.0
+offset_bottom = 277.0
+theme_override_font_sizes/font_size = 20
+text = "Select"
+
+[node name="PurpleButton" type="Button" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 337.0
+offset_right = 279.0
+offset_bottom = 373.0
+theme_override_font_sizes/font_size = 20
+text = "Select"
+
+[node name="WhiteButton" type="Button" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 433.0
+offset_right = 279.0
+offset_bottom = 469.0
+theme_override_font_sizes/font_size = 20
+text = "Select"
+
+[node name="YellowButton" type="Button" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 530.0
+offset_right = 280.0
+offset_bottom = 566.0
+theme_override_font_sizes/font_size = 20
+text = "Select"
+
+[node name="BlueLabel" type="Label" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 57.0
+offset_right = 266.0
+offset_bottom = 85.0
+theme_override_font_sizes/font_size = 20
+
+[node name="OrangeLabel" type="Label" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 151.0
+offset_right = 267.0
+offset_bottom = 179.0
+theme_override_font_sizes/font_size = 20
+
+[node name="PinkLabel" type="Label" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 250.0
+offset_right = 266.0
+offset_bottom = 278.0
+theme_override_font_sizes/font_size = 20
+
+[node name="PurpleLabel" type="Label" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 345.0
+offset_right = 267.0
+offset_bottom = 373.0
+theme_override_font_sizes/font_size = 20
+
+[node name="WhiteLabel" type="Label" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 441.0
+offset_right = 267.0
+offset_bottom = 469.0
+theme_override_font_sizes/font_size = 20
+
+[node name="YellowLabel" type="Label" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 537.0
+offset_right = 266.0
+offset_bottom = 565.0
+theme_override_font_sizes/font_size = 20
+
+[node name="StartGameLabel" type="Label" parent="PreGameLobby"]
+visible = false
+layout_mode = 0
+offset_left = 1029.0
+offset_top = 500.0
+offset_right = 1117.0
+offset_bottom = 523.0
+text = "Start Game"
+
+[node name="OneVOneButton" type="Button" parent="PreGameLobby"]
+visible = false
+layout_mode = 0
+offset_left = 1019.0
+offset_top = 568.0
+offset_right = 1126.0
+offset_bottom = 604.0
+theme_override_font_sizes/font_size = 20
+text = "Kill House"
+
+[node name="FFAButton" type="Button" parent="PreGameLobby"]
+visible = false
+layout_mode = 0
+offset_left = 1019.0
+offset_top = 528.0
+offset_right = 1126.0
+offset_bottom = 564.0
+theme_override_font_sizes/font_size = 20
+text = "Extraction"
+
+[node name="IPLabel" type="Label" parent="PreGameLobby"]
+visible = false
+layout_mode = 0
+offset_left = 11.0
+offset_top = 618.0
+offset_right = 136.0
+offset_bottom = 641.0
+text = "Your IP address:"
+
+[node name="ChatBox" type="TextEdit" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 32.0
+offset_right = 989.0
+offset_bottom = 567.0
+editable = false
+wrap_mode = 1
+
+[node name="ChatEntry" type="LineEdit" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 573.0
+offset_right = 984.0
+offset_bottom = 638.0
+max_length = 125
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_8chxd")
+
+[connection signal="pressed" from="HostJoinMenu/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="HostJoinMenu/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="text_submitted" from="NameEntry/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="text_submitted" from="JoinEntry/AddressEntry" to="." method="_on_address_entry_text_submitted"]
+[connection signal="pressed" from="JoinEntry/JEBackButton" to="." method="_on_je_back_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/BlueButton" to="." method="_on_blue_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/OrangeButton" to="." method="_on_orange_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/PinkButton" to="." method="_on_pink_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/PurpleButton" to="." method="_on_purple_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/WhiteButton" to="." method="_on_white_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/YellowButton" to="." method="_on_yellow_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/OneVOneButton" to="." method="_on_one_v_one_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/FFAButton" to="." method="_on_ffa_button_pressed"]
+[connection signal="text_submitted" from="PreGameLobby/ChatEntry" to="." method="_on_chat_entry_text_submitted"]

@@ -13,7 +13,7 @@ func _on_solo_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/locations_scenes/solo_run.tscn")
 
 func _on_multiplayer_button_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://scenes/meta_scenes/lobby.tscn")
 
 func _on_options_button_pressed() -> void:
 	$MainButtons.visible = false

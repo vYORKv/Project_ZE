@@ -19,6 +19,7 @@ config/windows_native_icon="res://erin_icon.ico"
 [autoload]
 
 Global="*res://scripts/meta_scripts/global.gd"
+NetworkController="*res://scripts/meta_scripts/network_controller.gd"
 
 [display]
 
