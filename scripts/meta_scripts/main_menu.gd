@@ -4,8 +4,8 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.Cursor()
-	print("Main Menu Parent: " + str(get_parent()))
-	print("Main Menu Tree: " + str(get_tree()))
+	#print("Main Menu Parent: " + str(get_parent()))
+	#print("Main Menu Tree: " + str(get_tree()))
 	if Global.solo_run_win:
 		$SoloWinLabel.visible = true
 

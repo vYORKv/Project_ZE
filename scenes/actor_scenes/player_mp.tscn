@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dyjf7v4pg7brh"]
+[gd_scene load_steps=46 format=3 uid="uid://dyjf7v4pg7brh"]
 
 [ext_resource type="Script" path="res://scripts/actor_scripts/player_mp.gd" id="1_g0s2s"]
 [ext_resource type="Texture2D" uid="uid://cintmrmr5qntm" path="res://assets/graphics/effects/approx_200_pixels.png" id="2_h5srr"]
@@ -20,10 +20,28 @@
 [ext_resource type="Texture2D" uid="uid://ccv2omdaasqal" path="res://assets/graphics/ui/bleeding_ui.png" id="18_se17p"]
 [ext_resource type="Texture2D" uid="uid://8ilmk1ccxbka" path="res://assets/graphics/ui/reloading_ui.png" id="19_vkvex"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3lxry"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hi6oj"]
 light_mode = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_me7vp"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_elsl5"]
+light_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ffyg8"]
+light_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_f03ds"]
+light_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oph0w"]
+light_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_amsjl"]
+light_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_51h5c"]
+light_mode = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yodbx"]
 
@@ -208,8 +226,23 @@ animations = [{
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jwx83"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Bat:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Bat:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Bat:visible")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
-[node name="Player" type="CharacterBody2D" groups=["actors", "player"]]
+[node name="PlayerMP" type="CharacterBody2D" groups=["actors", "player"]]
 z_index = 5
 collision_layer = 33
 collision_mask = 33
@@ -225,7 +258,7 @@ texture = ExtResource("2_h5srr")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 2
 visibility_layer = 2
-material = SubResource("CanvasItemMaterial_3lxry")
+material = SubResource("CanvasItemMaterial_hi6oj")
 position = Vector2(2.5, 0)
 rotation = 1.5708
 texture = ExtResource("3_erfuv")
@@ -256,6 +289,7 @@ disabled = true
 zoom = Vector2(1.15, 1.15)
 
 [node name="Bat" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_elsl5")
 position = Vector2(10, 15.735)
 rotation = 2.79253
 scale = Vector2(1.25, 1.25)
@@ -263,6 +297,7 @@ texture = ExtResource("4_ov8f3")
 
 [node name="Handgun" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("CanvasItemMaterial_ffyg8")
 position = Vector2(17, 10)
 rotation = 1.48353
 texture = ExtResource("3_l8jtg")
@@ -277,6 +312,7 @@ scale = Vector2(0.25, 0.25)
 
 [node name="Rifle" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("CanvasItemMaterial_f03ds")
 position = Vector2(20, 10)
 rotation = 1.48353
 texture = ExtResource("4_8e2kk")
@@ -291,6 +327,7 @@ scale = Vector2(0.25, 0.25)
 
 [node name="Shotgun" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("CanvasItemMaterial_oph0w")
 position = Vector2(20, 10)
 rotation = 1.48353
 texture = ExtResource("5_m4tca")
@@ -321,12 +358,14 @@ scale = Vector2(0.25, 0.25)
 
 [node name="Pills" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("CanvasItemMaterial_amsjl")
 position = Vector2(12, 10)
 rotation = 0.523599
 texture = ExtResource("7_stsdc")
 
 [node name="Bandage" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("CanvasItemMaterial_51h5c")
 position = Vector2(12, 10)
 rotation = 0.523599
 texture = ExtResource("8_wujhr")

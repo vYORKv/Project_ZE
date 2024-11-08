@@ -98,6 +98,7 @@ const WHITE_POINTER := preload("res://assets/graphics/actors/player/white_pointe
 @onready var ReloadingSprite := $PlayerUI/ReloadingSprite
 @onready var TimerLabel := $PlayerUI/TimerLabel
 @onready var NotificationLabel := $PlayerUI/NotificationLabel
+@onready var MultiplayerSync := $MultiplayerSynchronizer
 
 var node_toggle := true
 
@@ -106,7 +107,9 @@ const FRICTION := 400#4000
 const TURN_SPEED := 0.15
 var speed := 100#300
 
+var player_name := "name"
 var color := "yellow"
+var alliance := "blue"
 var hitpoints := 100#1000
 var bleeding := false
 var dead := false
@@ -145,11 +148,19 @@ var moderate_noise_bodies: Array[Object]
 var loud_noise_bodies: Array[Object]
 
 func _ready() -> void:
-	print("Player Parent: " + str(get_parent()))
-	print("PLayer Tree: " + str(get_tree()))
+	$MultiplayerSynchronizer.set_multiplayer_authority(str(client_authority).to_int())
+	#MultiplayerSync.set_multiplayer_authority(client_authority)
+	#self.set_multiplayer_authority(client_authority)
+	#print("Player Parent: " + str(get_parent()))
+	#print("PLayer Tree: " + str(get_tree()))
 	#await get_tree().create_timer(1).timeout
 	#speed = 100
-	pass
+	#ColorSelector(NetworkController.players[client_authority].color)
+	#print(str(player_name) + "  " + str(color) + "  " + str(alliance))
+	if alliance == "blue":
+		$Sprite2D.set_texture(BLUE_POINTER)
+	elif alliance == "red":
+		$Sprite2D.set_texture(RED_POINTER)
 
 func _input(event: InputEvent) -> void:
 	if !dead and input_allowed:
@@ -340,7 +351,7 @@ func _input(event: InputEvent) -> void:
 			else:
 				pass
 
-func SpawnOnRadius(ITEM) -> void:
+func SpawnOnRadius(ITEM: Object) -> void:
 	var angle = randf_range(0, TAU)
 	var raycast := RayCast2D.new()
 	self.add_child(raycast)
@@ -437,6 +448,22 @@ func SpawnOnRadius(ITEM) -> void:
 		#else:
 			#pass
 
+func ColorSelector(color: String) -> void:
+	if color == "yellow":
+		$Sprite2D.set_texture(YELLOW_POINTER)
+	if color == "blue" or "blue1" or "blue2":
+		$Sprite2D.set_texture(BLUE_POINTER)
+	if color == "brown":
+		$Sprite2D.set_texture(BROWN_POINTER)
+	if color == "orange":
+		$Sprite2D.set_texture(ORANGE_POINTER)
+	if color == "pink":
+		$Sprite2D.set_texture(PINK_POINTER)
+	if color == "red" or "red1" or "red2":
+		$Sprite2D.set_texture(RED_POINTER)
+	if color == "white":
+		$Sprite2D.set_texture(WHITE_POINTER)
+
 func UILabels() -> void:
 	HitpointsLabel.text = "HP: " + str(hitpoints)
 	if inventory_slot == 0:
@@ -519,6 +546,10 @@ func UILabels() -> void:
 		ReloadingSprite.stop()
 
 func _physics_process(delta: float) -> void:
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		$Camera2D.make_current()
+	#if is_multiplayer_authority():
+		#$Camera2D.make_current()
 	UILabels()
 	if !dead and input_allowed:
 		WeaponCollision()

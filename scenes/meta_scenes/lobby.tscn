@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmc6queajy47l"]
+[gd_scene load_steps=10 format=3 uid="uid://cmc6queajy47l"]
 
 [ext_resource type="Script" path="res://scripts/meta_scripts/lobby.gd" id="1_eqq0h"]
 [ext_resource type="Texture2D" uid="uid://2mpc4jw3l544" path="res://assets/graphics/actors/player/player_blue.png" id="2_fq51c"]
@@ -7,12 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://cgbulixgmrwsm" path="res://assets/graphics/actors/player/player_purple.png" id="5_wlabn"]
 [ext_resource type="Texture2D" uid="uid://c73m8t3fwbl5i" path="res://assets/graphics/actors/player/player_white.png" id="6_g3vek"]
 [ext_resource type="Texture2D" uid="uid://d1jb1a0xspknr" path="res://assets/graphics/actors/player/player_yellow.png" id="7_06csn"]
+[ext_resource type="Texture2D" uid="uid://cxpojofo8cixw" path="res://assets/graphics/actors/player/player_red.png" id="8_15hco"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8chxd"]
 
 [node name="Lobby" type="Node2D"]
 script = ExtResource("1_eqq0h")
-metadata/_edit_vertical_guides_ = [576.0, 399.0, 481.0]
+metadata/_edit_vertical_guides_ = [576.0, 399.0, 481.0, 168.0]
 
 [node name="HostJoinMenu" type="Control" parent="."]
 visible = false
@@ -109,31 +110,37 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="BluePlayer" type="Sprite2D" parent="PreGameLobby"]
+[node name="ExtractionPlayers" type="Control" parent="PreGameLobby"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BluePlayer" type="Sprite2D" parent="PreGameLobby/ExtractionPlayers"]
 position = Vector2(149, 66)
 texture = ExtResource("2_fq51c")
 
-[node name="OrangePlayer" type="Sprite2D" parent="PreGameLobby"]
+[node name="OrangePlayer" type="Sprite2D" parent="PreGameLobby/ExtractionPlayers"]
 position = Vector2(149, 162)
 texture = ExtResource("3_vamd0")
 
-[node name="PinkPlayer" type="Sprite2D" parent="PreGameLobby"]
+[node name="PinkPlayer" type="Sprite2D" parent="PreGameLobby/ExtractionPlayers"]
 position = Vector2(149, 258)
 texture = ExtResource("4_bt4d8")
 
-[node name="PurplePlayer" type="Sprite2D" parent="PreGameLobby"]
+[node name="PurplePlayer" type="Sprite2D" parent="PreGameLobby/ExtractionPlayers"]
 position = Vector2(149, 354)
 texture = ExtResource("5_wlabn")
 
-[node name="WhitePlayer" type="Sprite2D" parent="PreGameLobby"]
+[node name="WhitePlayer" type="Sprite2D" parent="PreGameLobby/ExtractionPlayers"]
 position = Vector2(149, 450)
 texture = ExtResource("6_g3vek")
 
-[node name="YellowPlayer" type="Sprite2D" parent="PreGameLobby"]
+[node name="YellowPlayer" type="Sprite2D" parent="PreGameLobby/ExtractionPlayers"]
 position = Vector2(149, 546)
 texture = ExtResource("7_06csn")
 
-[node name="BlueButton" type="Button" parent="PreGameLobby"]
+[node name="BlueButton" type="Button" parent="PreGameLobby/ExtractionPlayers"]
 layout_mode = 0
 offset_left = 213.0
 offset_top = 49.0
@@ -142,7 +149,7 @@ offset_bottom = 85.0
 theme_override_font_sizes/font_size = 20
 text = "Select"
 
-[node name="OrangeButton" type="Button" parent="PreGameLobby"]
+[node name="OrangeButton" type="Button" parent="PreGameLobby/ExtractionPlayers"]
 layout_mode = 0
 offset_left = 213.0
 offset_top = 143.0
@@ -151,7 +158,7 @@ offset_bottom = 179.0
 theme_override_font_sizes/font_size = 20
 text = "Select"
 
-[node name="PinkButton" type="Button" parent="PreGameLobby"]
+[node name="PinkButton" type="Button" parent="PreGameLobby/ExtractionPlayers"]
 layout_mode = 0
 offset_left = 213.0
 offset_top = 241.0
@@ -160,7 +167,7 @@ offset_bottom = 277.0
 theme_override_font_sizes/font_size = 20
 text = "Select"
 
-[node name="PurpleButton" type="Button" parent="PreGameLobby"]
+[node name="PurpleButton" type="Button" parent="PreGameLobby/ExtractionPlayers"]
 layout_mode = 0
 offset_left = 213.0
 offset_top = 337.0
@@ -169,7 +176,7 @@ offset_bottom = 373.0
 theme_override_font_sizes/font_size = 20
 text = "Select"
 
-[node name="WhiteButton" type="Button" parent="PreGameLobby"]
+[node name="WhiteButton" type="Button" parent="PreGameLobby/ExtractionPlayers"]
 layout_mode = 0
 offset_left = 213.0
 offset_top = 433.0
@@ -178,7 +185,7 @@ offset_bottom = 469.0
 theme_override_font_sizes/font_size = 20
 text = "Select"
 
-[node name="YellowButton" type="Button" parent="PreGameLobby"]
+[node name="YellowButton" type="Button" parent="PreGameLobby/ExtractionPlayers"]
 layout_mode = 0
 offset_left = 214.0
 offset_top = 530.0
@@ -187,7 +194,7 @@ offset_bottom = 566.0
 theme_override_font_sizes/font_size = 20
 text = "Select"
 
-[node name="BlueLabel" type="Label" parent="PreGameLobby"]
+[node name="BlueLabel" type="Label" parent="PreGameLobby/ExtractionPlayers"]
 layout_mode = 0
 offset_left = 226.0
 offset_top = 57.0
@@ -195,7 +202,7 @@ offset_right = 266.0
 offset_bottom = 85.0
 theme_override_font_sizes/font_size = 20
 
-[node name="OrangeLabel" type="Label" parent="PreGameLobby"]
+[node name="OrangeLabel" type="Label" parent="PreGameLobby/ExtractionPlayers"]
 layout_mode = 0
 offset_left = 227.0
 offset_top = 151.0
@@ -203,7 +210,7 @@ offset_right = 267.0
 offset_bottom = 179.0
 theme_override_font_sizes/font_size = 20
 
-[node name="PinkLabel" type="Label" parent="PreGameLobby"]
+[node name="PinkLabel" type="Label" parent="PreGameLobby/ExtractionPlayers"]
 layout_mode = 0
 offset_left = 226.0
 offset_top = 250.0
@@ -211,7 +218,7 @@ offset_right = 266.0
 offset_bottom = 278.0
 theme_override_font_sizes/font_size = 20
 
-[node name="PurpleLabel" type="Label" parent="PreGameLobby"]
+[node name="PurpleLabel" type="Label" parent="PreGameLobby/ExtractionPlayers"]
 layout_mode = 0
 offset_left = 227.0
 offset_top = 345.0
@@ -219,7 +226,7 @@ offset_right = 267.0
 offset_bottom = 373.0
 theme_override_font_sizes/font_size = 20
 
-[node name="WhiteLabel" type="Label" parent="PreGameLobby"]
+[node name="WhiteLabel" type="Label" parent="PreGameLobby/ExtractionPlayers"]
 layout_mode = 0
 offset_left = 227.0
 offset_top = 441.0
@@ -227,7 +234,7 @@ offset_right = 267.0
 offset_bottom = 469.0
 theme_override_font_sizes/font_size = 20
 
-[node name="YellowLabel" type="Label" parent="PreGameLobby"]
+[node name="YellowLabel" type="Label" parent="PreGameLobby/ExtractionPlayers"]
 layout_mode = 0
 offset_left = 226.0
 offset_top = 537.0
@@ -235,32 +242,127 @@ offset_right = 266.0
 offset_bottom = 565.0
 theme_override_font_sizes/font_size = 20
 
-[node name="StartGameLabel" type="Label" parent="PreGameLobby"]
+[node name="KillhousePlayers" type="Control" parent="PreGameLobby"]
 visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Blue1" type="Sprite2D" parent="PreGameLobby/KillhousePlayers"]
+position = Vector2(128, 192)
+texture = ExtResource("2_fq51c")
+
+[node name="Blue2" type="Sprite2D" parent="PreGameLobby/KillhousePlayers"]
+position = Vector2(128, 256)
+texture = ExtResource("2_fq51c")
+
+[node name="Red1" type="Sprite2D" parent="PreGameLobby/KillhousePlayers"]
+position = Vector2(128, 384)
+texture = ExtResource("8_15hco")
+
+[node name="Red2" type="Sprite2D" parent="PreGameLobby/KillhousePlayers"]
+position = Vector2(128, 448)
+texture = ExtResource("8_15hco")
+
+[node name="Blue1Button" type="Button" parent="PreGameLobby/KillhousePlayers"]
 layout_mode = 0
-offset_left = 1029.0
-offset_top = 500.0
-offset_right = 1117.0
-offset_bottom = 523.0
-text = "Start Game"
+offset_left = 169.0
+offset_top = 174.0
+offset_right = 235.0
+offset_bottom = 210.0
+theme_override_font_sizes/font_size = 20
+text = "Select"
+
+[node name="Blue2Button" type="Button" parent="PreGameLobby/KillhousePlayers"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 239.0
+offset_right = 234.0
+offset_bottom = 275.0
+theme_override_font_sizes/font_size = 20
+text = "Select"
+
+[node name="Red1Button" type="Button" parent="PreGameLobby/KillhousePlayers"]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 365.0
+offset_right = 235.0
+offset_bottom = 401.0
+theme_override_font_sizes/font_size = 20
+text = "Select"
+
+[node name="Red2Button" type="Button" parent="PreGameLobby/KillhousePlayers"]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 430.0
+offset_right = 235.0
+offset_bottom = 466.0
+theme_override_font_sizes/font_size = 20
+text = "Select"
+
+[node name="Label" type="Label" parent="PreGameLobby/KillhousePlayers"]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 312.0
+offset_right = 212.0
+offset_bottom = 335.0
+text = "versus"
+
+[node name="Blue1Label" type="Label" parent="PreGameLobby/KillhousePlayers"]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 179.0
+offset_right = 209.0
+offset_bottom = 207.0
+theme_override_font_sizes/font_size = 20
+
+[node name="Blue2Label" type="Label" parent="PreGameLobby/KillhousePlayers"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 243.0
+offset_right = 208.0
+offset_bottom = 271.0
+theme_override_font_sizes/font_size = 20
+
+[node name="Red1Label" type="Label" parent="PreGameLobby/KillhousePlayers"]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 371.0
+offset_right = 209.0
+offset_bottom = 399.0
+theme_override_font_sizes/font_size = 20
+
+[node name="Red2Label" type="Label" parent="PreGameLobby/KillhousePlayers"]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 435.0
+offset_right = 209.0
+offset_bottom = 463.0
+theme_override_font_sizes/font_size = 20
+
+[node name="SelectModeLabel" type="Label" parent="PreGameLobby"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 264.0
+offset_right = 256.0
+offset_bottom = 287.0
+text = "Seclect Game Mode"
 
 [node name="OneVOneButton" type="Button" parent="PreGameLobby"]
-visible = false
 layout_mode = 0
-offset_left = 1019.0
-offset_top = 568.0
-offset_right = 1126.0
-offset_bottom = 604.0
+offset_left = 119.0
+offset_top = 334.0
+offset_right = 226.0
+offset_bottom = 370.0
 theme_override_font_sizes/font_size = 20
 text = "Kill House"
 
 [node name="FFAButton" type="Button" parent="PreGameLobby"]
-visible = false
 layout_mode = 0
-offset_left = 1019.0
-offset_top = 528.0
-offset_right = 1126.0
-offset_bottom = 564.0
+offset_left = 119.0
+offset_top = 294.0
+offset_right = 226.0
+offset_bottom = 330.0
 theme_override_font_sizes/font_size = 20
 text = "Extraction"
 
@@ -290,6 +392,15 @@ offset_right = 984.0
 offset_bottom = 638.0
 max_length = 125
 
+[node name="StartGameButton" type="Button" parent="PreGameLobby"]
+visible = false
+layout_mode = 0
+offset_left = 1026.0
+offset_top = 586.0
+offset_right = 1122.0
+offset_bottom = 617.0
+text = "Start Game"
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_8chxd")
 
@@ -298,12 +409,17 @@ replication_config = SubResource("SceneReplicationConfig_8chxd")
 [connection signal="text_submitted" from="NameEntry/LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="text_submitted" from="JoinEntry/AddressEntry" to="." method="_on_address_entry_text_submitted"]
 [connection signal="pressed" from="JoinEntry/JEBackButton" to="." method="_on_je_back_button_pressed"]
-[connection signal="pressed" from="PreGameLobby/BlueButton" to="." method="_on_blue_button_pressed"]
-[connection signal="pressed" from="PreGameLobby/OrangeButton" to="." method="_on_orange_button_pressed"]
-[connection signal="pressed" from="PreGameLobby/PinkButton" to="." method="_on_pink_button_pressed"]
-[connection signal="pressed" from="PreGameLobby/PurpleButton" to="." method="_on_purple_button_pressed"]
-[connection signal="pressed" from="PreGameLobby/WhiteButton" to="." method="_on_white_button_pressed"]
-[connection signal="pressed" from="PreGameLobby/YellowButton" to="." method="_on_yellow_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/ExtractionPlayers/BlueButton" to="." method="_on_blue_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/ExtractionPlayers/OrangeButton" to="." method="_on_orange_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/ExtractionPlayers/PinkButton" to="." method="_on_pink_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/ExtractionPlayers/PurpleButton" to="." method="_on_purple_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/ExtractionPlayers/WhiteButton" to="." method="_on_white_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/ExtractionPlayers/YellowButton" to="." method="_on_yellow_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/KillhousePlayers/Blue1Button" to="." method="_on_blue_1_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/KillhousePlayers/Blue2Button" to="." method="_on_blue_2_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/KillhousePlayers/Red1Button" to="." method="_on_red_1_button_pressed"]
+[connection signal="pressed" from="PreGameLobby/KillhousePlayers/Red2Button" to="." method="_on_red_2_button_pressed"]
 [connection signal="pressed" from="PreGameLobby/OneVOneButton" to="." method="_on_one_v_one_button_pressed"]
 [connection signal="pressed" from="PreGameLobby/FFAButton" to="." method="_on_ffa_button_pressed"]
 [connection signal="text_submitted" from="PreGameLobby/ChatEntry" to="." method="_on_chat_entry_text_submitted"]
+[connection signal="pressed" from="PreGameLobby/StartGameButton" to="." method="_on_start_game_button_pressed"]

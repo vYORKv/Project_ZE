@@ -27,15 +27,16 @@ func SetSprite(sprite: Texture2D) -> void:
 	self.set_texture(sprite)
 
 func RandomSprite(sprite_array: Array) -> void:
-	var array_length = sprite_array.size()
-	var random_sprite = randi() % array_length
-	var final_sprite = sprite_array[random_sprite]
-	self.set_texture(final_sprite)
+	#var array_length = sprite_array.size()
+	#var random_sprite = randi() % array_length
+	#var final_sprite = sprite_array[random_sprite]
+	var random_sprite = sprite_array.pick_random()
+	self.set_texture(random_sprite)
 
 func CorpseSprite(color: String) -> void:
 	if color == "yellow":
 		self.set_texture(YELLOW_CORPSE)
-	elif color == "blue":
+	elif color == "blue" or "blue1" or "blue2":
 		self.set_texture(BLUE_CORPSE)
 	elif color == "brown":
 		self.set_texture(BROWN_CORPSE)
@@ -45,7 +46,7 @@ func CorpseSprite(color: String) -> void:
 		self.set_texture(PINK_CORPSE)
 	elif color == "purple":
 		self.set_texture(PURPLE_CORPSE)
-	elif color == "red":
+	elif color == "red" or "red1" or "red2":
 		self.set_texture(RED_CORPSE)
 	elif color == "white":
 		self.set_texture(WHITE_CORPSE)

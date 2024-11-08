@@ -129,18 +129,20 @@ func RandomPosition(center: Vector2, distance: float) -> Vector2: ### NOT NEEDED
 	return Vector2(center.x + random_x, center.y + random_y)
 
 func PlayLoopingSFX(sfx_array: Array) -> void:
-	var array_length = sfx_array.size()
-	var random_sfx = randi() % array_length
-	var final_sfx = sfx_array[random_sfx]
+	#var array_length = sfx_array.size()
+	#var random_sfx = randi() % array_length
+	#var final_sfx = sfx_array[random_sfx]
+	var random_sfx = sfx_array.pick_random()
 	#print(final_sfx)
-	LoopingSFX.set_stream(final_sfx)
+	LoopingSFX.set_stream(random_sfx)
 	LoopingSFX.play()
 
 func PlayOneShotSFX(sfx_array: Array) -> void:
-	var array_length = sfx_array.size()
-	var random_sfx = randi() % array_length
-	var final_sfx = sfx_array[random_sfx]
-	OneShotSFX.set_stream(final_sfx)
+	#var array_length = sfx_array.size()
+	#var random_sfx = randi() % array_length
+	#var final_sfx = sfx_array[random_sfx]
+	var random_sfx = sfx_array.pick_random()
+	OneShotSFX.set_stream(random_sfx)
 	OneShotSFX.play()
 
 func _physics_process(delta: float) -> void:

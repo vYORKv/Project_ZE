@@ -17,10 +17,11 @@ func Play(sound: AudioStream) -> void:
 	self.queue_free()
 
 func PlayRandom(sfx_array: Array) -> void:
-	var array_length = sfx_array.size()
-	var random_sfx = randi() % array_length
-	var final_sfx = sfx_array[random_sfx]
-	self.set_stream(final_sfx)
+	#var array_length = sfx_array.size()
+	#var random_sfx = randi() % array_length
+	#var final_sfx = sfx_array[random_sfx]
+	var random_sfx = sfx_array.pick_random()
+	self.set_stream(random_sfx)
 	self.play()
 	await self.finished
 	self.queue_free()
